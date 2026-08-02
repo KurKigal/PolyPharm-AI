@@ -2,8 +2,6 @@
 
 109
 
-[![CI](https://github.com/YZTA-109/ProjectManagement/actions/workflows/ci.yml/badge.svg)](https://github.com/YZTA-109/ProjectManagement/actions/workflows/ci.yml)
-
 # Ürün İle İlgili Bilgiler
 
 ## Takım Elemanları
