@@ -74,6 +74,9 @@ Sprint 1 kapsamında uygulama basit ama genişletilebilir bir agent mimarisiyle 
 ```text
 PolyPharm AI
 │
+├── .github/workflows/
+│   └── ci.yml
+│
 ├── app/
 │   └── main.py
 │
@@ -113,13 +116,20 @@ PolyPharm AI
 │	│	├──SPRINT1_REVIEW.md
 │   ├── sprint2/
 │	│	├──DAILY_SCRUM.md
+│	│	├──RAG_RESEARCH.md
 │	│	├──RETROSPECTIVE.md
 │	│	├──SPRINT_BACKLOG.md
 │	│	├──SPRINT2_REVIEW.md
+│   ├── sprint3/
+│	│	├──DAILY_SCRUM.md
+│	│	├──RETROSPECTIVE.md
+│	│	├──SPRINT_BACKLOG.md
+│	│	└──SPRINT3_REVIEW.md
 │   ├── product_backlog.md
 │   └── user_stories.md
 │
 ├── tests/
+│   ├── test_app_smoke.py
 │   ├── test_fda_interaction_agent.py
 │   ├── test_gemini_explainer.py
 │   ├── test_interaction_agent.py
@@ -131,6 +141,7 @@ PolyPharm AI
 │   ├── test_rxnorm_provider.py
 │   └── test_scoring_agent.py
 │
+├── .env.example
 ├── requirements.txt
 └── README.md
 ```
@@ -180,8 +191,18 @@ Bağımlılıkları yükleyin:
 pip install -r requirements.txt
 ```
 
-Harici API'ler için proje kökünde `.env` dosyası oluşturun (opsiyonel — anahtar
-olmadan da uygulama kural tabanlı modda çalışır):
+Harici API'ler için örnek ortam dosyasını kopyalayın ve gerekirse anahtarları
+doldurun. Anahtar olmadan uygulama kural tabanlı çevrimdışı modda çalışır:
+
+```bash
+cp .env.example .env
+```
+
+Windows PowerShell için:
+
+```powershell
+Copy-Item .env.example .env
+```
 
 ```env
 GEMINI_API_KEY=your-gemini-api-key
@@ -206,6 +227,11 @@ Testleri çalıştırmak için:
 ```bash
 python -m pytest -q
 ```
+
+Güncel yerel doğrulama sonucu **53 passed** değeridir. Test seti agent/provider birim
+testlerine ek olarak Streamlit uygulamasının açılışını ve openFDA kapalı çevrimdışı
+analiz akışını da kontrol eder. `.github/workflows/ci.yml`, aynı testleri pull request
+ve `main` güncellemelerinde otomatik çalıştırır.
 
 ## Klinik Uyarı
 
@@ -431,16 +457,32 @@ Sprint 2 sonunda ürün; marka adı çözümlemesi, resmi FDA prospektüs verisi
 
 ## Sprint Hedefi
 
-Sprint 3 kapsamında hedef, PolyPharm AI projesini final teslimine hazır hale getirmektir.
+Sprint 3 kapsamında PolyPharm AI; yerel çalıştırma, otomatik kalite doğrulaması,
+hata dayanıklılığı ve dokümantasyon açısından final teslime hazır hale getirilmiştir.
 
-Planlanan geliştirmeler:
+## Tamamlananlar
 
-- Sprint 2'de eklenen veri/API/RAG yapısının stabil hale getirilmesi
-- Ürün bütünlüğünün artırılması
-- Final demo senaryosunun hazırlanması
-- Sunum videosu için akışın oluşturulması
-- README ve dokümantasyonun son haline getirilmesi
-- Projenin canlıya alınması veya canlıya alınabilir hale getirilmesi
-- Test ve hata giderme çalışmalarının tamamlanması
+- Doğrudan Python bağımlılıkları test edilmiş sürümlere sabitlendi.
+- GitHub Actions CI eklendi.
+- Streamlit açılışı ve çevrimdışı analiz için iki smoke test eklendi; toplam test
+  sayısı 53'e ulaştı.
+- Bozuk veri dosyaları ve beklenmeyen analiz hataları için loglama ve kullanıcı dostu
+  hata mesajları eklendi.
+- Sprint 2 backlog durumları ve US-10–US-18 kabul kriterleri güncellendi.
+- RAG araştırmasının sonucu ve implementasyon yapılmama kararı belgelendi.
+- Sprint 3 backlog, daily scrum, review ve retrospective belgeleri tamamlandı.
+- README final kapsam ve kalite doğrulama bilgileriyle güncellendi.
+
+## Kapsam Kararı
+
+Proje canlıya alınmayacaktır. Bu nedenle deployment, production URL, final demo/video
+ve yeni ekran görüntüleri Sprint 3 kapsamından çıkarılmıştır. Uygulama eğitim amaçlı,
+yerelde çalıştırılan bir karar destek prototipi olarak teslim edilmektedir.
+
+Ayrıntılar için:
+
+- [Sprint 3 Backlog](docs/sprint3/SPRINT_BACKLOG.md)
+- [Sprint 3 Review](docs/sprint3/SPRINT3_REVIEW.md)
+- [Sprint 3 Retrospective](docs/sprint3/RETROSPECTIVE.md)
 
 ---

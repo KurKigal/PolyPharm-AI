@@ -1,7 +1,8 @@
 import html
+import json
+import logging
 import re
 import sys
-import json
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +22,7 @@ from models.schemas import LabValues, Patient, PrescriptionRequest
 from providers.rxnorm_provider import RxNormProvider
 
 DATA_DIR = PROJECT_ROOT / "data"
+LOGGER = logging.getLogger(__name__)
 
 st.set_page_config(
     page_title="PolyPharm AI",
@@ -292,12 +294,18 @@ st.markdown(
 @st.cache_data
 def load_json_file(path: Path) -> list[dict]:
     if not path.exists():
+        LOGGER.warning("Veri dosyası bulunamadı: %s", path)
         return []
 
-    with path.open("r", encoding="utf-8") as file:
-        payload = json.load(file)
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            payload = json.load(file)
+    except (OSError, json.JSONDecodeError):
+        LOGGER.exception("Veri dosyası okunamadı: %s", path)
+        return []
 
     if not isinstance(payload, list):
+        LOGGER.warning("Veri dosyasının kök değeri liste değil: %s", path)
         return []
 
     return payload
@@ -557,25 +565,35 @@ st.write("")
 # --- Analiz -----------------------------------------------------------------
 
 if st.button("Analiz Et", type="primary"):
-    patient = build_patient_from_inputs(
-        age=age,
-        gender=gender,
-        current_medications=current_medications,
-        egfr=egfr,
-        creatinine=creatinine,
-        ast=ast,
-        alt=alt,
-    )
+    try:
+        patient = build_patient_from_inputs(
+            age=age,
+            gender=gender,
+            current_medications=current_medications,
+            egfr=egfr,
+            creatinine=creatinine,
+            ast=ast,
+            alt=alt,
+        )
 
-    request = PrescriptionRequest(
-        patient=patient,
-        new_medication=new_medication,
-    )
+        request = PrescriptionRequest(
+            patient=patient,
+            new_medication=new_medication,
+        )
 
-    orchestrator = get_orchestrator(use_openfda, use_ai_summary)
+        orchestrator = get_orchestrator(use_openfda, use_ai_summary)
 
-    with st.spinner("Analiz yapılıyor (RxNorm + openFDA + Gemini)..."):
-        result = orchestrator.analyze(request)
+        with st.spinner("Analiz yapılıyor (RxNorm + openFDA + Gemini)..."):
+            result = orchestrator.analyze(request)
+    except Exception:
+        LOGGER.exception("Reçete güvenlik analizi tamamlanamadı")
+        st.error(
+            "Analiz şu anda tamamlanamadı. Girdileri kontrol edip yeniden deneyin."
+        )
+        st.caption(
+            "Sorun devam ederse harici veri kaynaklarını kapatıp çevrimdışı modu deneyin."
+        )
+        st.stop()
 
     risk_meta = RISK_LEVEL_META.get(result.risk_level, RISK_LEVEL_META["Orta Risk"])
     score_color = risk_meta["ink"]

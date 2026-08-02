@@ -30,10 +30,12 @@ harici veri kaynakları ve yapay zeka desteğiyle geliştirmek.
 
 ## Sprint Hedefine Ulaşma Durumu
 
-Planlanan sekiz kalemden yedisi tamamlandı. "Canlıya alma" kalemi Sprint 3'e devredildi;
+Planlanan dokuz kalemden sekizi tamamlandı. "Canlıya alma" kalemi Sprint 3'e devredildi;
 Streamlit Community Cloud önerilen seçenek olarak not edildi (gizli anahtarlar Streamlit
 secrets ile yönetilecek).
 
 ## Paydaş Geri Bildirimi
 
-> Bu bölüm sprint review toplantısından sonra ekip tarafından doldurulacaktır.
+Sprint review için ayrı bir paydaş yorum kaydı tutulmamıştır. Teknik review sonucunda
+harici kaynakların hata durumunda kural tabanlı akışa dönmesi korunmuş; final kalite,
+CI ve dokümantasyon işleri Sprint 3'e aktarılmıştır.
