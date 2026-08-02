@@ -1,6 +1,7 @@
-# User Stories — Kabul Kriterleri (Sprint 1)
+# User Stories — Kabul Kriterleri
 
-Bu doküman, `docs/product_backlog.md` içindeki Sprint 1 kapsamındaki (US-01–US-09) user story'lerin detaylı kabul kriterlerini içerir. Sprint 2 ve Sprint 3'teki story'ler (US-10–US-18) henüz backlog aşamasında olduğu için kabul kriterleri ilgili sprint planlamasında detaylandırılacaktır.
+Bu doküman, `docs/product_backlog.md` içindeki Sprint 1–3 user story'lerinin
+kabul kriterlerini ve güncel kapsam kararlarını içerir.
 
 ---
 
@@ -107,9 +108,121 @@ Bu doküman, `docs/product_backlog.md` içindeki Sprint 1 kapsamındaki (US-01�
 
 ---
 
+## US-10 — Harici ilaç veri kaynakları
+
+**Geliştirici olarak** harici ilaç kaynaklarına bağlanmak istiyorum; **böylece** demo
+veri sınırının ötesinde resmi kaynak bilgisi kullanabilirim.
+
+**Kabul Kriterleri:**
+
+- RxNorm yerel veritabanı ilaç adı ve marka-etken madde çözümlemesi sağlar.
+- openFDA istemcisi prospektüs uyarılarını zaman aşımı ve önbellekle getirir.
+- Harici kaynak hataları kural tabanlı analizi durdurmaz.
+
+---
+
+## US-11 — Provider katmanı
+
+**Geliştirici olarak** veri kaynaklarını tek servis arkasında toplamak istiyorum;
+**böylece** agent'lar kaynak ayrıntılarına bağımlı kalmaz.
+
+**Kabul Kriterleri:**
+
+- `DrugDataService`, RxNorm, openFDA ve yerel kural sağlayıcısını ortak akışta kullanır.
+- Harici kaynaklar bağımsız olarak açılıp kapatılabilir.
+- Agent testlerinde sahte sağlayıcılar kullanılabilir.
+
+---
+
+## US-12 — RAG araştırması
+
+**Geliştirici olarak** resmi kaynaklar için RAG yaklaşımını değerlendirmek istiyorum.
+
+**Kabul Kriterleri:**
+
+- Mevcut RxNorm/openFDA yaklaşımıyla RAG yaklaşımının kapsam farkı belgelenir.
+- Implementasyon kararı ve gerekçesi kayıt altına alınır.
+- Araştırma sonucu `docs/sprint2/RAG_RESEARCH.md` içinde bulunur.
+
+---
+
+## US-13 — Ayrıntılı rapor
+
+**Doktor olarak** daha okunabilir bir analiz raporu almak istiyorum.
+
+**Kabul Kriterleri:**
+
+- Markdown raporu risk skoru, sıralı bulgular ve kaynak bilgisini içerir.
+- RxNorm/openFDA bilgileri mevcut olduğunda rapora eklenir.
+- AI özeti üretildiğinde ayrı ve açıkça işaretlenmiş bölümde gösterilir.
+
+---
+
+## US-14 — Akıcı arayüz
+
+**Kullanıcı olarak** analiz sonucunu düzenli bir arayüzde incelemek istiyorum.
+
+**Kabul Kriterleri:**
+
+- Sonuçlar özet, risk bulguları, ilaç bilgisi ve ham çıktı sekmelerine ayrılır.
+- Risk seviyeleri tutarlı renk ve etiketlerle gösterilir.
+- RxNorm eşleşmesi ve veri kaynağı durumu kullanıcıya görünürdür.
+
+---
+
+## US-15 — Genişletilmiş test kapsamı
+
+**Geliştirici olarak** regresyonları otomatik testlerle yakalamak istiyorum.
+
+**Kabul Kriterleri:**
+
+- Agent, provider, orchestrator ve rapor katmanlarının birim testleri bulunur.
+- Harici API çağrıları testlerde mock'lanır veya kapatılır.
+- Testler API anahtarı ve internet gerektirmeden tamamlanır.
+
+---
+
+## US-16 — Tekrar üretilebilir kalite doğrulaması
+
+**Ürün ekibi olarak** projenin kurulumunu ve kalite kontrollerini tekrar üretilebilir
+hale getirmek istiyorum.
+
+**Kabul Kriterleri:**
+
+- Doğrudan bağımlılıklar doğrulanmış sürümlere sabitlenir.
+- Streamlit açılışı ve çevrimdışı analiz smoke testlerle doğrulanır.
+- GitHub Actions, pull request'lerde tüm test setini çalıştırır.
+- Beklenmeyen analiz hataları kullanıcı dostu mesajla gösterilir ve loglanır.
+
+---
+
+## US-17 — Final demo ve video
+
+Bu story ürün kararıyla **Not Planned** durumundadır. Final demo senaryosu, sunum
+videosu ve yeni ekran görüntüleri Sprint 3 kapsamına dahil edilmemiştir.
+
+---
+
+## US-18 — Final dokümantasyonu
+
+**Ürün ekibi olarak** README ve sprint belgelerini final teslimine hazır hale getirmek
+istiyorum.
+
+**Kabul Kriterleri:**
+
+- Product backlog tamamlanan Sprint 2 ve Sprint 3 durumlarını doğru gösterir.
+- `docs/sprint3/` altında backlog, daily scrum, review ve retrospective bulunur.
+- README güncel kurulum, test sonucu, kapsam kararı ve belge bağlantılarını içerir.
+- Canlı deployment yapılmadığı ve production URL bulunmadığı açıkça belirtilir.
+
+---
+
 ## Referanslar
 
 - Product Backlog: `docs/product_backlog.md`
 - Sprint 1 Backlog: `docs/sprint1/SPRINT_BACKLOG.md`
 - Sprint 1 Review: `docs/sprint1/SPRINT1_REVIEW.md`
 - Sprint 1 Retrospective: `docs/sprint1/RETROSPECTIVE.md`
+- Sprint 2 Backlog: `docs/sprint2/SPRINT_BACKLOG.md`
+- Sprint 2 RAG Araştırması: `docs/sprint2/RAG_RESEARCH.md`
+- Sprint 3 Backlog: `docs/sprint3/SPRINT_BACKLOG.md`
