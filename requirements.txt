@@ -1,6 +1,8 @@
 streamlit==1.41.1
 pydantic==2.13.4
 pandas==2.2.3
+numpy==1.26.4
+pyarrow==18.1.0
 requests==2.34.2
 python-dotenv==1.2.2
 google-genai==2.16.0
