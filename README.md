@@ -361,8 +361,3 @@ product development.
 - GitHub: [KurKigal](https://github.com/KurKigal)
 - LinkedIn: [Emirhan Keser](https://www.linkedin.com/in/emirhan-keser/)
 
-## License
-
-No open-source license is asserted by this Stage 7 package. Before publishing
-one, confirm that you have the right to license all repository content,
-especially if earlier contributors authored portions of the code.
