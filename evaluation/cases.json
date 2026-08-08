@@ -1,0 +1,1393 @@
+{
+  "dataset_id": "polypharm-synthetic-evaluation",
+  "dataset_version": "1.0.0",
+  "clinical_ground_truth": false,
+  "description": "Synthetic regression and behavioral evaluation cases for the PolyPharm AI deterministic decision-support prototype.",
+  "limitations": "Expected labels are derived from the project's current documented prototype rules. Passing this suite demonstrates software consistency, not clinical validity, diagnostic accuracy, or medical-device performance.",
+  "cases": [
+    {
+      "id": "ddi-01-warfarin-aspirin",
+      "description": "Synthetic positive-control case for the curated warfarin + aspirin interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "warfarin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "aspirin",
+      "expected_rule_ids": [
+        "DDI-aspirin-warfarin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-02-warfarin-ibuprofen",
+      "description": "Synthetic positive-control case for the curated warfarin + ibuprofen interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "warfarin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "ibuprofen",
+      "expected_rule_ids": [
+        "DDI-ibuprofen-warfarin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-03-metformin-furosemide",
+      "description": "Synthetic positive-control case for the curated metformin + furosemide interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "metformin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "furosemide",
+      "expected_rule_ids": [
+        "DDI-furosemide-metformin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-04-ibuprofen-lisinopril",
+      "description": "Synthetic positive-control case for the curated ibuprofen + lisinopril interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "ibuprofen"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "lisinopril",
+      "expected_rule_ids": [
+        "DDI-ibuprofen-lisinopril"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-05-atorvastatin-clarithromycin",
+      "description": "Synthetic positive-control case for the curated atorvastatin + clarithromycin interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "atorvastatin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "clarithromycin",
+      "expected_rule_ids": [
+        "DDI-atorvastatin-clarithromycin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-06-simvastatin-clarithromycin",
+      "description": "Synthetic positive-control case for the curated simvastatin + clarithromycin interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "simvastatin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "clarithromycin",
+      "expected_rule_ids": [
+        "DDI-clarithromycin-simvastatin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-07-digoxin-amiodarone",
+      "description": "Synthetic positive-control case for the curated digoxin + amiodarone interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "digoxin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "amiodarone",
+      "expected_rule_ids": [
+        "DDI-amiodarone-digoxin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-08-lisinopril-potassium-chloride",
+      "description": "Synthetic positive-control case for the curated lisinopril + potassium chloride interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "lisinopril"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "potassium chloride",
+      "expected_rule_ids": [
+        "DDI-lisinopril-potassium-chloride"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-09-spironolactone-lisinopril",
+      "description": "Synthetic positive-control case for the curated spironolactone + lisinopril interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "spironolactone"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "lisinopril",
+      "expected_rule_ids": [
+        "DDI-lisinopril-spironolactone"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-10-warfarin-amiodarone",
+      "description": "Synthetic positive-control case for the curated warfarin + amiodarone interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "warfarin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "amiodarone",
+      "expected_rule_ids": [
+        "DDI-amiodarone-warfarin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-11-warfarin-fluconazole",
+      "description": "Synthetic positive-control case for the curated warfarin + fluconazole interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "warfarin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "fluconazole",
+      "expected_rule_ids": [
+        "DDI-fluconazole-warfarin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-12-warfarin-clopidogrel",
+      "description": "Synthetic positive-control case for the curated warfarin + clopidogrel interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "warfarin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "clopidogrel",
+      "expected_rule_ids": [
+        "DDI-clopidogrel-warfarin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-13-clopidogrel-omeprazole",
+      "description": "Synthetic positive-control case for the curated clopidogrel + omeprazole interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "clopidogrel"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "omeprazole",
+      "expected_rule_ids": [
+        "DDI-clopidogrel-omeprazole"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-14-aspirin-ibuprofen",
+      "description": "Synthetic positive-control case for the curated aspirin + ibuprofen interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "aspirin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "ibuprofen",
+      "expected_rule_ids": [
+        "DDI-aspirin-ibuprofen"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-15-aspirin-methotrexate",
+      "description": "Synthetic positive-control case for the curated aspirin + methotrexate interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "aspirin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "methotrexate",
+      "expected_rule_ids": [
+        "DDI-aspirin-methotrexate"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-16-methotrexate-trimethoprim",
+      "description": "Synthetic positive-control case for the curated methotrexate + trimethoprim interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "critical"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "methotrexate"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "trimethoprim",
+      "expected_rule_ids": [
+        "DDI-methotrexate-trimethoprim"
+      ],
+      "expected_risk_level": "critical",
+      "expected_score": {
+        "min": 50,
+        "max": 50
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-17-digoxin-verapamil",
+      "description": "Synthetic positive-control case for the curated digoxin + verapamil interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "digoxin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "verapamil",
+      "expected_rule_ids": [
+        "DDI-digoxin-verapamil"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-18-digoxin-furosemide",
+      "description": "Synthetic positive-control case for the curated digoxin + furosemide interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "digoxin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "furosemide",
+      "expected_rule_ids": [
+        "DDI-digoxin-furosemide"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-19-metformin-iodinated-contrast-media",
+      "description": "Synthetic positive-control case for the curated metformin + iodinated contrast media interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "metformin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "iodinated contrast media",
+      "expected_rule_ids": [
+        "DDI-iodinated-contrast-media-metformin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-20-simvastatin-amlodipine",
+      "description": "Synthetic positive-control case for the curated simvastatin + amlodipine interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "simvastatin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "amlodipine",
+      "expected_rule_ids": [
+        "DDI-amlodipine-simvastatin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-21-atorvastatin-gemfibrozil",
+      "description": "Synthetic positive-control case for the curated atorvastatin + gemfibrozil interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "atorvastatin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "gemfibrozil",
+      "expected_rule_ids": [
+        "DDI-atorvastatin-gemfibrozil"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-22-tramadol-sertraline",
+      "description": "Synthetic positive-control case for the curated tramadol + sertraline interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "tramadol"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "sertraline",
+      "expected_rule_ids": [
+        "DDI-sertraline-tramadol"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-23-sertraline-sumatriptan",
+      "description": "Synthetic positive-control case for the curated sertraline + sumatriptan interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "medium"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "sertraline"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "sumatriptan",
+      "expected_rule_ids": [
+        "DDI-sertraline-sumatriptan"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-24-ciprofloxacin-theophylline",
+      "description": "Synthetic positive-control case for the curated ciprofloxacin + theophylline interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "ciprofloxacin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "theophylline",
+      "expected_rule_ids": [
+        "DDI-ciprofloxacin-theophylline"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-25-amiodarone-sotalol",
+      "description": "Synthetic positive-control case for the curated amiodarone + sotalol interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "critical"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "amiodarone"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "sotalol",
+      "expected_rule_ids": [
+        "DDI-amiodarone-sotalol"
+      ],
+      "expected_risk_level": "critical",
+      "expected_score": {
+        "min": 50,
+        "max": 50
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-26-furosemide-gentamicin",
+      "description": "Synthetic positive-control case for the curated furosemide + gentamicin interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "furosemide"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "gentamicin",
+      "expected_rule_ids": [
+        "DDI-furosemide-gentamicin"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-27-levothyroxine-calcium-carbonate",
+      "description": "Synthetic positive-control case for the curated levothyroxine + calcium carbonate interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "low"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "levothyroxine"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "calcium carbonate",
+      "expected_rule_ids": [
+        "DDI-calcium-carbonate-levothyroxine"
+      ],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 90,
+        "max": 90
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-28-omeprazole-diazepam",
+      "description": "Synthetic positive-control case for the curated omeprazole + diazepam interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "low"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "omeprazole"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "diazepam",
+      "expected_rule_ids": [
+        "DDI-diazepam-omeprazole"
+      ],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 90,
+        "max": 90
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "ddi-29-potassium-chloride-spironolactone",
+      "description": "Synthetic positive-control case for the curated potassium chloride + spironolactone interaction rule.",
+      "tags": [
+        "ddi",
+        "positive_control",
+        "high"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "female",
+        "current_medications": [
+          "potassium chloride"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "spironolactone",
+      "expected_rule_ids": [
+        "DDI-potassium-chloride-spironolactone"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "negative-01-metformin-loratadine",
+      "description": "Synthetic negative-control case with no expected local interaction or laboratory-rule finding.",
+      "tags": [
+        "negative_control"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "male",
+        "current_medications": [
+          "metformin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 100,
+        "max": 100
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "negative-02-atorvastatin-loratadine",
+      "description": "Synthetic negative-control case with no expected local interaction or laboratory-rule finding.",
+      "tags": [
+        "negative_control"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "male",
+        "current_medications": [
+          "atorvastatin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 100,
+        "max": 100
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "negative-03-sertraline-loratadine",
+      "description": "Synthetic negative-control case with no expected local interaction or laboratory-rule finding.",
+      "tags": [
+        "negative_control"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "male",
+        "current_medications": [
+          "sertraline"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 100,
+        "max": 100
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "negative-04-lisinopril-loratadine",
+      "description": "Synthetic negative-control case with no expected local interaction or laboratory-rule finding.",
+      "tags": [
+        "negative_control"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "male",
+        "current_medications": [
+          "lisinopril"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 100,
+        "max": 100
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "negative-05-digoxin-loratadine",
+      "description": "Synthetic negative-control case with no expected local interaction or laboratory-rule finding.",
+      "tags": [
+        "negative_control"
+      ],
+      "language": "en",
+      "patient": {
+        "age": 45,
+        "gender": "male",
+        "current_medications": [
+          "digoxin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 100,
+        "max": 100
+      },
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-renal-moderate-sensitive",
+      "description": "Moderate renal impairment with a renal-sensitive new medication.",
+      "tags": [
+        "lab",
+        "renal",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 50,
+        "gender": "female",
+        "current_medications": [
+          "loratadine"
+        ],
+        "lab_values": {
+          "egfr": 45,
+          "creatinine": 1.4,
+          "ast": 25,
+          "alt": 25
+        }
+      },
+      "new_medication": "metformin",
+      "expected_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-renal-moderate-nonsensitive",
+      "description": "Moderate renal impairment with a non-listed new medication.",
+      "tags": [
+        "lab",
+        "renal",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 50,
+        "gender": "male",
+        "current_medications": [
+          "metformin"
+        ],
+        "lab_values": {
+          "egfr": 45,
+          "creatinine": 1.4,
+          "ast": 25,
+          "alt": 25
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "expected_risk_level": "low",
+      "expected_score": {
+        "min": 90,
+        "max": 90
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-renal-severe-sensitive",
+      "description": "Severe renal impairment with a renal-sensitive new medication.",
+      "tags": [
+        "lab",
+        "renal",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 55,
+        "gender": "female",
+        "current_medications": [
+          "loratadine"
+        ],
+        "lab_values": {
+          "egfr": 25,
+          "creatinine": 2.2,
+          "ast": 25,
+          "alt": 25
+        }
+      },
+      "new_medication": "metformin",
+      "expected_rule_ids": [
+        "LAB-RENAL-SEVERE"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-hepatic-elevated",
+      "description": "Elevated liver enzymes below the marked-elevation threshold.",
+      "tags": [
+        "lab",
+        "hepatic",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 52,
+        "gender": "male",
+        "current_medications": [
+          "loratadine"
+        ],
+        "lab_values": {
+          "egfr": 90,
+          "creatinine": 1.0,
+          "ast": 90,
+          "alt": 70
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [
+        "LAB-HEPATIC-ELEVATED"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-hepatic-marked-sensitive",
+      "description": "Marked liver-enzyme elevation with a hepatic-risk medication.",
+      "tags": [
+        "lab",
+        "hepatic",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 58,
+        "gender": "female",
+        "current_medications": [
+          "loratadine"
+        ],
+        "lab_values": {
+          "egfr": 90,
+          "creatinine": 1.0,
+          "ast": 135,
+          "alt": 145
+        }
+      },
+      "new_medication": "atorvastatin",
+      "expected_rule_ids": [
+        "LAB-HEPATIC-MARKED"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 65,
+        "max": 65
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-polypharmacy-older-adult",
+      "description": "Older adult using five existing medications.",
+      "tags": [
+        "lab",
+        "polypharmacy",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 72,
+        "gender": "female",
+        "current_medications": [
+          "metformin",
+          "lisinopril",
+          "digoxin",
+          "sertraline",
+          "atorvastatin"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "lab-polypharmacy-count",
+      "description": "Non-older adult using eight existing medications.",
+      "tags": [
+        "lab",
+        "polypharmacy",
+        "positive_control"
+      ],
+      "patient": {
+        "age": 50,
+        "gender": "male",
+        "current_medications": [
+          "metformin",
+          "lisinopril",
+          "digoxin",
+          "sertraline",
+          "atorvastatin",
+          "amlodipine",
+          "levothyroxine",
+          "diazepam"
+        ],
+        "lab_values": {
+          "egfr": 95,
+          "creatinine": 0.9,
+          "ast": 25,
+          "alt": 22
+        }
+      },
+      "new_medication": "loratadine",
+      "expected_rule_ids": [
+        "LAB-POLYPHARMACY-COUNT"
+      ],
+      "expected_risk_level": "medium",
+      "expected_score": {
+        "min": 80,
+        "max": 80
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    },
+    {
+      "id": "combined-renal-hepatic-polypharmacy",
+      "description": "Combined synthetic case covering renal, hepatic, and older-adult polypharmacy signals.",
+      "tags": [
+        "combined",
+        "renal",
+        "hepatic",
+        "polypharmacy"
+      ],
+      "patient": {
+        "age": 72,
+        "gender": "female",
+        "current_medications": [
+          "loratadine",
+          "diazepam",
+          "amlodipine",
+          "sertraline",
+          "levothyroxine"
+        ],
+        "lab_values": {
+          "egfr": 25,
+          "creatinine": 2.3,
+          "ast": 135,
+          "alt": 145
+        }
+      },
+      "new_medication": "metformin",
+      "expected_rule_ids": [
+        "LAB-RENAL-SEVERE",
+        "LAB-HEPATIC-MARKED",
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "expected_risk_level": "critical",
+      "expected_score": {
+        "min": 25,
+        "max": 25
+      },
+      "language": "en",
+      "allow_unexpected_findings": false
+    }
+  ]
+}

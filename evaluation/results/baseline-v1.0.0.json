@@ -1,0 +1,1048 @@
+{
+  "dataset_id": "polypharm-synthetic-evaluation",
+  "dataset_version": "1.0.0",
+  "scoring_policy_version": "1.1.0",
+  "total_cases": 42,
+  "passed_cases": 42,
+  "failed_cases": 0,
+  "case_pass_rate": 1.0,
+  "expected_rule_count": 39,
+  "matched_rule_count": 39,
+  "expected_rule_recall": 1.0,
+  "risk_level_cases": 42,
+  "risk_level_matches": 42,
+  "risk_level_accuracy": 1.0,
+  "score_expectation_cases": 42,
+  "score_matches": 42,
+  "score_range_accuracy": 1.0,
+  "unexpected_finding_count": 0,
+  "duplicates_suppressed": 0,
+  "cases": [
+    {
+      "case_id": "ddi-01-warfarin-aspirin",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-aspirin-warfarin"
+      ],
+      "actual_rule_ids": [
+        "DDI-aspirin-warfarin"
+      ],
+      "matched_rule_ids": [
+        "DDI-aspirin-warfarin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-02-warfarin-ibuprofen",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-ibuprofen-warfarin"
+      ],
+      "actual_rule_ids": [
+        "DDI-ibuprofen-warfarin"
+      ],
+      "matched_rule_ids": [
+        "DDI-ibuprofen-warfarin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-03-metformin-furosemide",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-furosemide-metformin"
+      ],
+      "actual_rule_ids": [
+        "DDI-furosemide-metformin"
+      ],
+      "matched_rule_ids": [
+        "DDI-furosemide-metformin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-04-ibuprofen-lisinopril",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-ibuprofen-lisinopril"
+      ],
+      "actual_rule_ids": [
+        "DDI-ibuprofen-lisinopril"
+      ],
+      "matched_rule_ids": [
+        "DDI-ibuprofen-lisinopril"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-05-atorvastatin-clarithromycin",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-atorvastatin-clarithromycin"
+      ],
+      "actual_rule_ids": [
+        "DDI-atorvastatin-clarithromycin"
+      ],
+      "matched_rule_ids": [
+        "DDI-atorvastatin-clarithromycin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-06-simvastatin-clarithromycin",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-clarithromycin-simvastatin"
+      ],
+      "actual_rule_ids": [
+        "DDI-clarithromycin-simvastatin"
+      ],
+      "matched_rule_ids": [
+        "DDI-clarithromycin-simvastatin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-07-digoxin-amiodarone",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-amiodarone-digoxin"
+      ],
+      "actual_rule_ids": [
+        "DDI-amiodarone-digoxin"
+      ],
+      "matched_rule_ids": [
+        "DDI-amiodarone-digoxin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-08-lisinopril-potassium-chloride",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-lisinopril-potassium-chloride"
+      ],
+      "actual_rule_ids": [
+        "DDI-lisinopril-potassium-chloride"
+      ],
+      "matched_rule_ids": [
+        "DDI-lisinopril-potassium-chloride"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-09-spironolactone-lisinopril",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-lisinopril-spironolactone"
+      ],
+      "actual_rule_ids": [
+        "DDI-lisinopril-spironolactone"
+      ],
+      "matched_rule_ids": [
+        "DDI-lisinopril-spironolactone"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-10-warfarin-amiodarone",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-amiodarone-warfarin"
+      ],
+      "actual_rule_ids": [
+        "DDI-amiodarone-warfarin"
+      ],
+      "matched_rule_ids": [
+        "DDI-amiodarone-warfarin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-11-warfarin-fluconazole",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-fluconazole-warfarin"
+      ],
+      "actual_rule_ids": [
+        "DDI-fluconazole-warfarin"
+      ],
+      "matched_rule_ids": [
+        "DDI-fluconazole-warfarin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-12-warfarin-clopidogrel",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-clopidogrel-warfarin"
+      ],
+      "actual_rule_ids": [
+        "DDI-clopidogrel-warfarin"
+      ],
+      "matched_rule_ids": [
+        "DDI-clopidogrel-warfarin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-13-clopidogrel-omeprazole",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-clopidogrel-omeprazole"
+      ],
+      "actual_rule_ids": [
+        "DDI-clopidogrel-omeprazole"
+      ],
+      "matched_rule_ids": [
+        "DDI-clopidogrel-omeprazole"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-14-aspirin-ibuprofen",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-aspirin-ibuprofen"
+      ],
+      "actual_rule_ids": [
+        "DDI-aspirin-ibuprofen"
+      ],
+      "matched_rule_ids": [
+        "DDI-aspirin-ibuprofen"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-15-aspirin-methotrexate",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-aspirin-methotrexate"
+      ],
+      "actual_rule_ids": [
+        "DDI-aspirin-methotrexate"
+      ],
+      "matched_rule_ids": [
+        "DDI-aspirin-methotrexate"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-16-methotrexate-trimethoprim",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-methotrexate-trimethoprim"
+      ],
+      "actual_rule_ids": [
+        "DDI-methotrexate-trimethoprim"
+      ],
+      "matched_rule_ids": [
+        "DDI-methotrexate-trimethoprim"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "critical",
+      "actual_risk_level": "critical",
+      "expected_score_min": 50,
+      "expected_score_max": 50,
+      "actual_score": 50,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-17-digoxin-verapamil",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-digoxin-verapamil"
+      ],
+      "actual_rule_ids": [
+        "DDI-digoxin-verapamil"
+      ],
+      "matched_rule_ids": [
+        "DDI-digoxin-verapamil"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-18-digoxin-furosemide",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-digoxin-furosemide"
+      ],
+      "actual_rule_ids": [
+        "DDI-digoxin-furosemide"
+      ],
+      "matched_rule_ids": [
+        "DDI-digoxin-furosemide"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-19-metformin-iodinated-contrast-media",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-iodinated-contrast-media-metformin"
+      ],
+      "actual_rule_ids": [
+        "DDI-iodinated-contrast-media-metformin"
+      ],
+      "matched_rule_ids": [
+        "DDI-iodinated-contrast-media-metformin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-20-simvastatin-amlodipine",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-amlodipine-simvastatin"
+      ],
+      "actual_rule_ids": [
+        "DDI-amlodipine-simvastatin"
+      ],
+      "matched_rule_ids": [
+        "DDI-amlodipine-simvastatin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-21-atorvastatin-gemfibrozil",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-atorvastatin-gemfibrozil"
+      ],
+      "actual_rule_ids": [
+        "DDI-atorvastatin-gemfibrozil"
+      ],
+      "matched_rule_ids": [
+        "DDI-atorvastatin-gemfibrozil"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-22-tramadol-sertraline",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-sertraline-tramadol"
+      ],
+      "actual_rule_ids": [
+        "DDI-sertraline-tramadol"
+      ],
+      "matched_rule_ids": [
+        "DDI-sertraline-tramadol"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-23-sertraline-sumatriptan",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-sertraline-sumatriptan"
+      ],
+      "actual_rule_ids": [
+        "DDI-sertraline-sumatriptan"
+      ],
+      "matched_rule_ids": [
+        "DDI-sertraline-sumatriptan"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-24-ciprofloxacin-theophylline",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-ciprofloxacin-theophylline"
+      ],
+      "actual_rule_ids": [
+        "DDI-ciprofloxacin-theophylline"
+      ],
+      "matched_rule_ids": [
+        "DDI-ciprofloxacin-theophylline"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-25-amiodarone-sotalol",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-amiodarone-sotalol"
+      ],
+      "actual_rule_ids": [
+        "DDI-amiodarone-sotalol"
+      ],
+      "matched_rule_ids": [
+        "DDI-amiodarone-sotalol"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "critical",
+      "actual_risk_level": "critical",
+      "expected_score_min": 50,
+      "expected_score_max": 50,
+      "actual_score": 50,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-26-furosemide-gentamicin",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-furosemide-gentamicin"
+      ],
+      "actual_rule_ids": [
+        "DDI-furosemide-gentamicin"
+      ],
+      "matched_rule_ids": [
+        "DDI-furosemide-gentamicin"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-27-levothyroxine-calcium-carbonate",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-calcium-carbonate-levothyroxine"
+      ],
+      "actual_rule_ids": [
+        "DDI-calcium-carbonate-levothyroxine"
+      ],
+      "matched_rule_ids": [
+        "DDI-calcium-carbonate-levothyroxine"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 90,
+      "expected_score_max": 90,
+      "actual_score": 90,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-28-omeprazole-diazepam",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-diazepam-omeprazole"
+      ],
+      "actual_rule_ids": [
+        "DDI-diazepam-omeprazole"
+      ],
+      "matched_rule_ids": [
+        "DDI-diazepam-omeprazole"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 90,
+      "expected_score_max": 90,
+      "actual_score": 90,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "ddi-29-potassium-chloride-spironolactone",
+      "passed": true,
+      "expected_rule_ids": [
+        "DDI-potassium-chloride-spironolactone"
+      ],
+      "actual_rule_ids": [
+        "DDI-potassium-chloride-spironolactone"
+      ],
+      "matched_rule_ids": [
+        "DDI-potassium-chloride-spironolactone"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "negative-01-metformin-loratadine",
+      "passed": true,
+      "expected_rule_ids": [],
+      "actual_rule_ids": [],
+      "matched_rule_ids": [],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 100,
+      "expected_score_max": 100,
+      "actual_score": 100,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "negative-02-atorvastatin-loratadine",
+      "passed": true,
+      "expected_rule_ids": [],
+      "actual_rule_ids": [],
+      "matched_rule_ids": [],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 100,
+      "expected_score_max": 100,
+      "actual_score": 100,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "negative-03-sertraline-loratadine",
+      "passed": true,
+      "expected_rule_ids": [],
+      "actual_rule_ids": [],
+      "matched_rule_ids": [],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 100,
+      "expected_score_max": 100,
+      "actual_score": 100,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "negative-04-lisinopril-loratadine",
+      "passed": true,
+      "expected_rule_ids": [],
+      "actual_rule_ids": [],
+      "matched_rule_ids": [],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 100,
+      "expected_score_max": 100,
+      "actual_score": 100,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "negative-05-digoxin-loratadine",
+      "passed": true,
+      "expected_rule_ids": [],
+      "actual_rule_ids": [],
+      "matched_rule_ids": [],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 100,
+      "expected_score_max": 100,
+      "actual_score": 100,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-renal-moderate-sensitive",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "actual_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "matched_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-renal-moderate-nonsensitive",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "actual_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "matched_rule_ids": [
+        "LAB-RENAL-MODERATE"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "low",
+      "actual_risk_level": "low",
+      "expected_score_min": 90,
+      "expected_score_max": 90,
+      "actual_score": 90,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-renal-severe-sensitive",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-RENAL-SEVERE"
+      ],
+      "actual_rule_ids": [
+        "LAB-RENAL-SEVERE"
+      ],
+      "matched_rule_ids": [
+        "LAB-RENAL-SEVERE"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-hepatic-elevated",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-HEPATIC-ELEVATED"
+      ],
+      "actual_rule_ids": [
+        "LAB-HEPATIC-ELEVATED"
+      ],
+      "matched_rule_ids": [
+        "LAB-HEPATIC-ELEVATED"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-hepatic-marked-sensitive",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-HEPATIC-MARKED"
+      ],
+      "actual_rule_ids": [
+        "LAB-HEPATIC-MARKED"
+      ],
+      "matched_rule_ids": [
+        "LAB-HEPATIC-MARKED"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 65,
+      "expected_score_max": 65,
+      "actual_score": 65,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-polypharmacy-older-adult",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "actual_rule_ids": [
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "matched_rule_ids": [
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "lab-polypharmacy-count",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-POLYPHARMACY-COUNT"
+      ],
+      "actual_rule_ids": [
+        "LAB-POLYPHARMACY-COUNT"
+      ],
+      "matched_rule_ids": [
+        "LAB-POLYPHARMACY-COUNT"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "medium",
+      "actual_risk_level": "medium",
+      "expected_score_min": 80,
+      "expected_score_max": 80,
+      "actual_score": 80,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    },
+    {
+      "case_id": "combined-renal-hepatic-polypharmacy",
+      "passed": true,
+      "expected_rule_ids": [
+        "LAB-RENAL-SEVERE",
+        "LAB-HEPATIC-MARKED",
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "actual_rule_ids": [
+        "LAB-RENAL-SEVERE",
+        "LAB-HEPATIC-MARKED",
+        "LAB-POLYPHARMACY-OLDER-ADULT"
+      ],
+      "matched_rule_ids": [
+        "LAB-HEPATIC-MARKED",
+        "LAB-POLYPHARMACY-OLDER-ADULT",
+        "LAB-RENAL-SEVERE"
+      ],
+      "missing_rule_ids": [],
+      "unexpected_findings": [],
+      "expected_risk_level": "critical",
+      "actual_risk_level": "critical",
+      "expected_score_min": 25,
+      "expected_score_max": 25,
+      "actual_score": 25,
+      "risk_level_match": true,
+      "score_match": true,
+      "finding_expectations_match": true,
+      "duplicates_suppressed": 0,
+      "execution_error": null
+    }
+  ]
+}

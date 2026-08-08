@@ -215,6 +215,10 @@ class ReportAgent:
                     f"- Recommendation: {finding.recommendation}",
                     f"- Source: {finding.source}",
                     f"- Agent: {finding.agent}",
+                    f"- Category: {finding.category}",
+                    f"- Evidence type: {finding.evidence_type}",
+                    f"- Rule: {finding.rule_id or '-'} ({finding.rule_version or '-'})",
+                    f"- Evidence reference: {finding.evidence_reference or '-'}",
                     "",
                 ]
 
@@ -318,6 +322,10 @@ class ReportAgent:
                     f"- Öneri: {finding.recommendation}",
                     f"- Kaynak: {finding.source}",
                     f"- Ajan: {finding.agent}",
+                    f"- Kategori: {finding.category}",
+                    f"- Kanıt türü: {finding.evidence_type}",
+                    f"- Kural: {finding.rule_id or '-'} ({finding.rule_version or '-'})",
+                    f"- Kanıt referansı: {finding.evidence_reference or '-'}",
                     "",
                 ]
 
@@ -333,7 +341,9 @@ class ReportAgent:
             lines = [
                 "## Score Breakdown",
                 "",
+                f"- Scoring policy: **{breakdown.policy_version}**",
                 f"- Starting score: **{breakdown.starting_score}**",
+                f"- Duplicate findings suppressed: **{breakdown.duplicates_suppressed}**",
                 f"- Total penalty: **{_penalty_text(breakdown.total_penalty)}**",
                 f"- Raw score: **{breakdown.raw_score}**",
                 f"- Final score: **{breakdown.final_score}/100**",
@@ -343,8 +353,11 @@ class ReportAgent:
                 "Finding",
                 "Severity",
                 "Penalty",
+                "Category",
+                "Evidence",
                 "Source",
                 "Agent",
+                "Rule",
             )
             note = (
                 "> Score attribution is deterministic and explains the software rule output; "
@@ -354,7 +367,9 @@ class ReportAgent:
             lines = [
                 "## Skor Dökümü",
                 "",
+                f"- Skorlama politikası: **{breakdown.policy_version}**",
                 f"- Başlangıç skoru: **{breakdown.starting_score}**",
+                f"- Bastırılan mükerrer bulgu: **{breakdown.duplicates_suppressed}**",
                 f"- Toplam kesinti: **{_penalty_text(breakdown.total_penalty)}**",
                 f"- Ham skor: **{breakdown.raw_score}**",
                 f"- Nihai skor: **{breakdown.final_score}/100**",
@@ -364,8 +379,11 @@ class ReportAgent:
                 "Bulgu",
                 "Şiddet",
                 "Kesinti",
+                "Kategori",
+                "Kanıt Türü",
                 "Kaynak",
                 "Ajan",
+                "Kural",
             )
             note = (
                 "> Skor dökümü deterministiktir ve yazılım kurallarının sonucunu açıklar; "
@@ -375,12 +393,21 @@ class ReportAgent:
         if breakdown.contributions:
             lines.extend(
                 [
-                    f"| {headers[0]} | {headers[1]} | {headers[2]} | {headers[3]} | {headers[4]} |",
-                    "|---|---|---:|---|---|",
+                    (
+                        f"| {headers[0]} | {headers[1]} | {headers[2]} | "
+                        f"{headers[3]} | {headers[4]} | {headers[5]} | "
+                        f"{headers[6]} | {headers[7]} |"
+                    ),
+                    "|---|---|---:|---|---|---|---|---|",
                 ]
             )
 
             for item in breakdown.contributions:
+                rule_label = (
+                    f"{item.rule_id}@{item.rule_version}"
+                    if item.rule_id and item.rule_version
+                    else item.rule_id or "-"
+                )
                 lines.append(
                     "| "
                     + " | ".join(
@@ -388,8 +415,11 @@ class ReportAgent:
                             _markdown_cell(item.title),
                             _markdown_cell(item.severity),
                             _penalty_text(item.penalty),
+                            _markdown_cell(item.category),
+                            _markdown_cell(item.evidence_type),
                             _markdown_cell(item.source),
                             _markdown_cell(item.agent),
+                            _markdown_cell(rule_label),
                         ]
                     )
                     + " |"

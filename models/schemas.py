@@ -6,6 +6,23 @@ Severity = Literal["low", "medium", "high", "critical"]
 RiskLevel = Literal["low", "medium", "high", "critical"]
 Gender = Literal["female", "male", "other"]
 
+FindingCategory = Literal[
+    "drug_interaction",
+    "renal",
+    "hepatic",
+    "polypharmacy",
+    "boxed_warning",
+    "other",
+]
+
+EvidenceType = Literal[
+    "curated_rule",
+    "prototype_rule",
+    "official_label",
+    "external_data",
+    "unknown",
+]
+
 _GENDER_ALIASES = {
     "female": "female",
     "woman": "female",
@@ -109,8 +126,21 @@ class RiskFinding(BaseModel):
     severity: Severity
     description: str
     recommendation: str
+
+    category: FindingCategory = "other"
+    evidence_type: EvidenceType = "unknown"
+
     source: str = "PolyPharm AI rule"
     agent: str = "unknown"
+
+    rule_id: str | None = None
+    rule_version: str | None = None
+    evidence_reference: str | None = None
+
+    # Findings with the same explicit dedupe_key describe the same logical signal.
+    # Different data sources should intentionally use different keys unless they
+    # are known to be true duplicates.
+    dedupe_key: str | None = None
 
 
 class ScoreContribution(BaseModel):
@@ -118,19 +148,34 @@ class ScoreContribution(BaseModel):
 
     finding_index: int = Field(..., ge=0)
     severity: Severity
+    category: FindingCategory
+
+    # base_penalty is the configured severity penalty. penalty is the amount
+    # actually applied after an optional category cap.
+    base_penalty: int = Field(..., ge=0)
     penalty: int = Field(..., ge=0)
+    capped: bool = False
+
     title: str
     source: str
     agent: str
+    evidence_type: EvidenceType = "unknown"
+    rule_id: str | None = None
+    rule_version: str | None = None
+    evidence_reference: str | None = None
 
 
 class ScoreBreakdown(BaseModel):
     """Explainable attribution for the deterministic prescription safety score."""
 
+    policy_version: str
     starting_score: int = Field(default=100, ge=0, le=100)
     total_penalty: int = Field(..., ge=0)
     raw_score: int
     final_score: int = Field(..., ge=0, le=100)
+
+    duplicates_suppressed: int = Field(default=0, ge=0)
+    category_penalties: dict[str, int] = Field(default_factory=dict)
     contributions: list[ScoreContribution] = Field(default_factory=list)
 
 

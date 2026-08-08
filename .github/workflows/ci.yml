@@ -31,3 +31,9 @@ jobs:
           GEMINI_API_KEY: ""
           OPENFDA_API_KEY: ""
         run: python -m pytest -q
+
+      - name: Run deterministic synthetic evaluation
+        env:
+          GEMINI_API_KEY: ""
+          OPENFDA_API_KEY: ""
+        run: python scripts/run_evaluation.py --strict

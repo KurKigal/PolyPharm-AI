@@ -1,0 +1,9 @@
+{
+  "dataset_id": "polypharm-curated-ddi",
+  "dataset_version": "1.0.0",
+  "rule_schema_version": "1.0.0",
+  "status": "prototype",
+  "description": "Curated demonstration drug-drug interaction rules used by the PolyPharm AI educational decision-support prototype.",
+  "clinical_validation": false,
+  "notes": "The dataset is intentionally limited and is not a replacement for a validated clinical drug-interaction database."
+}

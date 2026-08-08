@@ -103,8 +103,13 @@
       "description": "Description",
       "recommendation": "Recommendation",
       "agent": "Agent",
-      "source": "Source"
-    }
+      "source": "Source",
+      "category": "Category",
+      "evidence": "Evidence",
+      "rule": "Rule"
+    },
+    "category": "Category",
+    "evidence_type": "Evidence"
   },
   "score_breakdown": {
     "title": "🔎 Why this score?",
@@ -119,8 +124,12 @@
       "severity": "Severity",
       "penalty": "Penalty",
       "source": "Source",
-      "agent": "Agent"
-    }
+      "agent": "Agent",
+      "category": "Category",
+      "evidence": "Evidence",
+      "rule": "Rule"
+    },
+    "policy_note": "Scoring policy {version} · {duplicates} exact duplicate finding(s) suppressed."
   },
   "drug_info": {
     "unavailable": "Drug information could not be collected.",
@@ -134,5 +143,20 @@
     "interactions": "FDA Interaction Text (English)",
     "indications": "FDA Indications (English)",
     "openfda_missing": "openFDA label data was not found or is disabled."
+  },
+  "finding_category": {
+    "drug_interaction": "Drug interaction",
+    "renal": "Renal",
+    "hepatic": "Hepatic",
+    "polypharmacy": "Polypharmacy",
+    "boxed_warning": "Boxed warning",
+    "other": "Other"
+  },
+  "evidence_type": {
+    "curated_rule": "Curated rule",
+    "prototype_rule": "Prototype rule",
+    "official_label": "Official label",
+    "external_data": "External data",
+    "unknown": "Unknown"
   }
 }

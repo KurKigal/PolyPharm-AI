@@ -4,6 +4,7 @@ from agents.interaction_agent import InteractionAgent
 from agents.lab_risk_agent import LabRiskAgent
 from agents.report_agent import ReportAgent
 from agents.scoring_agent import ScoringAgent
+from core.findings import deduplicate_findings
 from core.localization import normalize_language
 from models.schemas import (
     AnalysisResult,
@@ -53,8 +54,12 @@ class Orchestrator:
         request: PrescriptionRequest,
         language: str = "tr",
     ) -> AnalysisResult:
-        lang = normalize_language(language)
-        drug_info = self.drug_data_service.get_drug_info(request.new_medication)
+        lang = normalize_language(
+            language
+        )
+        drug_info = self.drug_data_service.get_drug_info(
+            request.new_medication
+        )
 
         findings: list[RiskFinding] = []
 
@@ -89,13 +94,25 @@ class Orchestrator:
             )
         )
 
-        findings = sorted(
-            findings,
-            key=lambda finding: SEVERITY_ORDER.get(finding.severity, 99),
+        findings, duplicates_suppressed = deduplicate_findings(
+            findings
         )
 
-        safety_score, risk_level, score_breakdown = (
-            self.scoring_agent.calculate_score(findings)
+        findings = sorted(
+            findings,
+            key=lambda finding: SEVERITY_ORDER.get(
+                finding.severity,
+                99,
+            ),
+        )
+
+        (
+            safety_score,
+            risk_level,
+            score_breakdown,
+        ) = self.scoring_agent.calculate_score(
+            findings,
+            duplicates_suppressed=duplicates_suppressed,
         )
 
         recommendation_summary = self.report_agent.generate_summary(
@@ -107,7 +124,10 @@ class Orchestrator:
         ai_summary = None
         ai_model = None
 
-        if self.use_ai_summary and self.gemini_explainer.available:
+        if (
+            self.use_ai_summary
+            and self.gemini_explainer.available
+        ):
             ai_summary = self.gemini_explainer.generate_summary(
                 patient=request.patient,
                 new_medication=request.new_medication,
@@ -151,11 +171,19 @@ class Orchestrator:
         drug_info: DrugInfo,
         language: str = "tr",
     ) -> list[RiskFinding]:
-        if not drug_info.openfda_found or not drug_info.boxed_warning:
+        if (
+            not drug_info.openfda_found
+            or not drug_info.boxed_warning
+        ):
             return []
 
-        lang = normalize_language(language)
-        drug_label = drug_info.normalized_name or drug_info.query_name
+        lang = normalize_language(
+            language
+        )
+        drug_label = (
+            drug_info.normalized_name
+            or drug_info.query_name
+        )
 
         if lang == "en":
             title = f"FDA boxed warning for {drug_label}"
@@ -184,7 +212,11 @@ class Orchestrator:
                 severity="high",
                 description=description,
                 recommendation=recommendation,
+                category="boxed_warning",
+                evidence_type="official_label",
                 source="openFDA drug label",
                 agent="DrugDataService",
+                evidence_reference="openFDA:boxed_warning",
+                dedupe_key=f"boxed-warning:openfda:{drug_label.lower().strip()}",
             )
         ]

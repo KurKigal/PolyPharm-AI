@@ -103,8 +103,13 @@
       "description": "Açıklama",
       "recommendation": "Öneri",
       "agent": "Ajan",
-      "source": "Kaynak"
-    }
+      "source": "Kaynak",
+      "category": "Kategori",
+      "evidence": "Kanıt Türü",
+      "rule": "Kural"
+    },
+    "category": "Kategori",
+    "evidence_type": "Kanıt Türü"
   },
   "score_breakdown": {
     "title": "🔎 Bu skor neden böyle?",
@@ -119,8 +124,12 @@
       "severity": "Şiddet",
       "penalty": "Kesinti",
       "source": "Kaynak",
-      "agent": "Ajan"
-    }
+      "agent": "Ajan",
+      "category": "Kategori",
+      "evidence": "Kanıt Türü",
+      "rule": "Kural"
+    },
+    "policy_note": "Skorlama politikası {version} · {duplicates} birebir mükerrer bulgu bastırıldı."
   },
   "drug_info": {
     "unavailable": "İlaç bilgisi toplanamadı.",
@@ -134,5 +143,20 @@
     "interactions": "FDA Etkileşim Metni (İngilizce)",
     "indications": "FDA Endikasyonlar (İngilizce)",
     "openfda_missing": "openFDA etiket verisi bulunamadı veya kapalı."
+  },
+  "finding_category": {
+    "drug_interaction": "İlaç etkileşimi",
+    "renal": "Böbrek",
+    "hepatic": "Karaciğer",
+    "polypharmacy": "Polifarmasi",
+    "boxed_warning": "Kutulu uyarı",
+    "other": "Diğer"
+  },
+  "evidence_type": {
+    "curated_rule": "Kürasyonlu kural",
+    "prototype_rule": "Prototip kural",
+    "official_label": "Resmî prospektüs",
+    "external_data": "Harici veri",
+    "unknown": "Bilinmiyor"
   }
 }

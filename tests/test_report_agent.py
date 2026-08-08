@@ -97,7 +97,10 @@ def test_markdown_report_english_contains_score_breakdown_drug_info_and_ai_summa
     assert "## Score Breakdown" in report
     assert "Starting score: **100**" in report
     assert "Total penalty: **-20**" in report
-    assert "| Test finding | medium | -20 | Test source | TestAgent |" in report
+    assert (
+        "| Test finding | medium | -20 | other | unknown | "
+        "Test source | TestAgent | - |"
+    ) in report
 
 
 def test_markdown_report_turkish_contains_score_breakdown_without_optional_sections(

@@ -1,48 +1,100 @@
+from core.scoring_policy import DEFAULT_SCORING_POLICY, ScoringPolicy
 from models.schemas import (
+    FindingCategory,
     RiskFinding,
     RiskLevel,
     ScoreBreakdown,
     ScoreContribution,
 )
 
-STARTING_SCORE = 100
-
-SEVERITY_PENALTY = {
-    "critical": 50,
-    "high": 35,
-    "medium": 20,
-    "low": 10,
-}
-
 
 class ScoringAgent:
-    """Convert findings into a deterministic, explainable 0-100 safety score."""
+    """Convert findings into a versioned, deterministic, explainable score."""
+
+    def __init__(
+        self,
+        policy: ScoringPolicy | None = None,
+    ):
+        self.policy = policy or DEFAULT_SCORING_POLICY
 
     def calculate_score(
         self,
         findings: list[RiskFinding],
+        *,
+        duplicates_suppressed: int = 0,
     ) -> tuple[int, RiskLevel, ScoreBreakdown]:
-        contributions = [
-            ScoreContribution(
-                finding_index=index,
-                severity=finding.severity,
-                penalty=SEVERITY_PENALTY.get(finding.severity, 0),
-                title=finding.title,
-                source=finding.source,
-                agent=finding.agent,
-            )
-            for index, finding in enumerate(findings)
-        ]
+        category_penalties: dict[str, int] = {}
+        contributions: list[ScoreContribution] = []
 
-        total_penalty = sum(item.penalty for item in contributions)
-        raw_score = STARTING_SCORE - total_penalty
-        final_score = max(raw_score, 0)
+        for index, finding in enumerate(findings):
+            category: FindingCategory = finding.category
+            base_penalty = self.policy.penalty_for(
+                finding.severity
+            )
+
+            category_total = category_penalties.get(
+                category,
+                0,
+            )
+            category_cap = self.policy.cap_for(
+                category
+            )
+
+            if category_cap is None:
+                applied_penalty = base_penalty
+            else:
+                remaining = max(
+                    category_cap - category_total,
+                    0,
+                )
+                applied_penalty = min(
+                    base_penalty,
+                    remaining,
+                )
+
+            category_penalties[category] = (
+                category_total + applied_penalty
+            )
+
+            contributions.append(
+                ScoreContribution(
+                    finding_index=index,
+                    severity=finding.severity,
+                    category=category,
+                    base_penalty=base_penalty,
+                    penalty=applied_penalty,
+                    capped=applied_penalty < base_penalty,
+                    title=finding.title,
+                    source=finding.source,
+                    agent=finding.agent,
+                    evidence_type=finding.evidence_type,
+                    rule_id=finding.rule_id,
+                    rule_version=finding.rule_version,
+                    evidence_reference=finding.evidence_reference,
+                )
+            )
+
+        total_penalty = sum(
+            contribution.penalty
+            for contribution in contributions
+        )
+        raw_score = (
+            self.policy.starting_score
+            - total_penalty
+        )
+        final_score = max(
+            raw_score,
+            0,
+        )
 
         breakdown = ScoreBreakdown(
-            starting_score=STARTING_SCORE,
+            policy_version=self.policy.version,
+            starting_score=self.policy.starting_score,
             total_penalty=total_penalty,
             raw_score=raw_score,
             final_score=final_score,
+            duplicates_suppressed=duplicates_suppressed,
+            category_penalties=category_penalties,
             contributions=contributions,
         )
 
@@ -51,14 +103,21 @@ class ScoringAgent:
             findings=findings,
         )
 
-        return final_score, risk_level, breakdown
+        return (
+            final_score,
+            risk_level,
+            breakdown,
+        )
 
     def _risk_level_from_score(
         self,
         score: int,
         findings: list[RiskFinding],
     ) -> RiskLevel:
-        if any(finding.severity == "critical" for finding in findings):
+        if any(
+            finding.severity == "critical"
+            for finding in findings
+        ):
             return "critical"
 
         if score >= 85:

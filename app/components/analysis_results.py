@@ -233,6 +233,14 @@ def _render_score_breakdown(
             f"{breakdown.final_score}/100",
         )
 
+        st.caption(
+            t(
+                "score_breakdown.policy_note",
+                version=breakdown.policy_version,
+                duplicates=breakdown.duplicates_suppressed,
+            )
+        )
+
         if breakdown.contributions:
             contribution_df = pd.DataFrame(
                 [
@@ -247,8 +255,15 @@ def _render_score_breakdown(
                             if contribution.penalty
                             else "0"
                         ),
+                        t("score_breakdown.columns.category"): contribution.category,
+                        t("score_breakdown.columns.evidence"): contribution.evidence_type,
                         t("score_breakdown.columns.source"): contribution.source,
                         t("score_breakdown.columns.agent"): contribution.agent,
+                        t("score_breakdown.columns.rule"): (
+                            f"{contribution.rule_id}@{contribution.rule_version}"
+                            if contribution.rule_id and contribution.rule_version
+                            else contribution.rule_id or "-"
+                        ),
                     }
                     for contribution in breakdown.contributions
                 ]
@@ -294,6 +309,7 @@ def _render_findings(
   <p>{esc(finding.description)}</p>
   <p><strong>{esc(t("findings.recommendation"))}:</strong> {esc(finding.recommendation)}</p>
   <div class="pp-meta">{esc(t("findings.source"))}: {esc(finding.source)} · {esc(t("findings.agent"))}: {esc(finding.agent)}</div>
+  <div class="pp-meta">{esc(t("findings.category"))}: {esc(t(f"finding_category.{finding.category}"))} · {esc(t("findings.evidence_type"))}: {esc(t(f"evidence_type.{finding.evidence_type}"))}</div>
 </div>
 """,
             unsafe_allow_html=True,
@@ -312,8 +328,19 @@ def _render_findings(
                     t("findings.columns.title"): finding.title,
                     t("findings.columns.description"): finding.description,
                     t("findings.columns.recommendation"): finding.recommendation,
+                    t("findings.columns.category"): t(
+                        f"finding_category.{finding.category}"
+                    ),
+                    t("findings.columns.evidence"): t(
+                        f"evidence_type.{finding.evidence_type}"
+                    ),
                     t("findings.columns.agent"): finding.agent,
                     t("findings.columns.source"): finding.source,
+                    t("findings.columns.rule"): (
+                        f"{finding.rule_id}@{finding.rule_version}"
+                        if finding.rule_id and finding.rule_version
+                        else finding.rule_id or "-"
+                    ),
                 }
                 for finding in result.findings
             ]
