@@ -12,11 +12,12 @@ class FakeModels:
         self.last_kwargs = kwargs
         if self.error:
             raise self.error
-
+        text = self.text
         class Response:
-            text = self.text
-
-        return Response()
+            pass
+        response = Response()
+        response.text = text
+        return response
 
 
 class FakeClient:
@@ -24,61 +25,49 @@ class FakeClient:
         self.models = FakeModels(text=text, error=error)
 
 
-def finding() -> RiskFinding:
-    return RiskFinding(
-        title="warfarin - aspirin etkileşimi",
-        severity="high",
-        description="Kanama riski",
-        recommendation="INR takibi",
-    )
+def finding(language="tr") -> RiskFinding:
+    if language == "en":
+        return RiskFinding(title="warfarin - aspirin interaction", severity="high", description="Bleeding risk", recommendation="Monitor INR")
+    return RiskFinding(title="warfarin - aspirin etkileşimi", severity="high", description="Kanama riski", recommendation="INR takibi")
 
 
 def test_not_available_without_key(monkeypatch):
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
-    explainer = GeminiExplainer(api_key=None)
-    assert not explainer.available
+    assert not GeminiExplainer(api_key=None).available
 
 
 def test_returns_none_when_unavailable(monkeypatch, healthy_patient):
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
-    explainer = GeminiExplainer(api_key=None)
-
-    summary = explainer.generate_summary(
-        patient=healthy_patient,
-        new_medication="aspirin",
-        findings=[finding()],
-        safety_score=65,
-        risk_level="Orta Risk",
+    summary = GeminiExplainer(api_key=None).generate_summary(
+        patient=healthy_patient, new_medication="aspirin", findings=[finding()], safety_score=65, risk_level="medium", language="tr"
     )
     assert summary is None
 
 
-def test_generates_summary_with_fake_client(healthy_patient):
+def test_generates_english_summary_with_english_prompt(healthy_patient):
+    client = FakeClient(text="Summary text")
+    explainer = GeminiExplainer(client=client)
+    summary = explainer.generate_summary(
+        patient=healthy_patient, new_medication="aspirin", findings=[finding("en")], safety_score=65, risk_level="medium", language="en"
+    )
+    assert summary == "Summary text"
+    prompt = client.models.last_kwargs["contents"]
+    instruction = client.models.last_kwargs["config"]["system_instruction"]
+    assert "Prescription safety analysis data" in prompt
+    assert "Moderate Risk" in prompt
+    assert "Write in English" in instruction
+
+
+def test_generates_turkish_summary_with_turkish_prompt(healthy_patient):
     client = FakeClient(text="Özet metni")
     explainer = GeminiExplainer(client=client)
-
     summary = explainer.generate_summary(
-        patient=healthy_patient,
-        new_medication="aspirin",
-        findings=[finding()],
-        safety_score=65,
-        risk_level="Orta Risk",
+        patient=healthy_patient, new_medication="aspirin", findings=[finding()], safety_score=65, risk_level="medium", language="tr"
     )
-
     assert summary == "Özet metni"
-    prompt = client.models.last_kwargs["contents"]
-    assert "aspirin" in prompt
-    assert "warfarin - aspirin etkileşimi" in prompt
+    assert "Türkçe yaz" in client.models.last_kwargs["config"]["system_instruction"]
 
 
 def test_api_error_returns_none(healthy_patient):
     explainer = GeminiExplainer(client=FakeClient(error=RuntimeError("quota")))
-
-    summary = explainer.generate_summary(
-        patient=healthy_patient,
-        new_medication="aspirin",
-        findings=[],
-        safety_score=100,
-        risk_level="Düşük Risk",
-    )
-    assert summary is None
+    assert explainer.generate_summary(patient=healthy_patient, new_medication="aspirin", findings=[], safety_score=100, risk_level="low", language="en") is None

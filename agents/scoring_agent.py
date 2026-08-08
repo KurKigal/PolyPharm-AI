@@ -1,5 +1,4 @@
-from models.schemas import RiskFinding
-
+from models.schemas import RiskFinding, RiskLevel
 
 SEVERITY_PENALTY = {
     "critical": 50,
@@ -10,27 +9,23 @@ SEVERITY_PENALTY = {
 
 
 class ScoringAgent:
-    """Converts findings into a simple 0-100 prescription safety score."""
+    """Convert findings into a deterministic 0-100 safety score."""
 
-    def calculate_score(self, findings: list[RiskFinding]) -> tuple[int, str]:
+    def calculate_score(self, findings: list[RiskFinding]) -> tuple[int, RiskLevel]:
         score = 100
-
         for finding in findings:
             score -= SEVERITY_PENALTY.get(finding.severity, 0)
 
         score = max(score, 0)
-        risk_level = self._risk_level_from_score(score=score, findings=findings)
+        return score, self._risk_level_from_score(score=score, findings=findings)
 
-        return score, risk_level
-
-    def _risk_level_from_score(self, score: int, findings: list[RiskFinding]) -> str:
+    def _risk_level_from_score(self, score: int, findings: list[RiskFinding]) -> RiskLevel:
         if any(finding.severity == "critical" for finding in findings):
-            return "Kritik Risk"
-
+            return "critical"
         if score >= 85:
-            return "Düşük Risk"
+            return "low"
         if score >= 60:
-            return "Orta Risk"
+            return "medium"
         if score >= 30:
-            return "Yüksek Risk"
-        return "Kritik Risk"
+            return "high"
+        return "critical"

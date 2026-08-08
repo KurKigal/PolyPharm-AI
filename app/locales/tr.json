@@ -1,0 +1,122 @@
+{
+  "app": {
+    "subtitle": "Akıllı İlaç Etkileşim ve Toksisite Simülatörü",
+    "department": "Reçete Güvenlik · Karar Destek",
+    "disclaimer": "Bu uygulama eğitim amaçlı bir karar destek demosudur. Klinik teşhis, reçeteleme veya tedavi kararı için kullanılamaz."
+  },
+  "common": {
+    "unknown": "bilinmiyor"
+  },
+  "gender": {
+    "female": "Kadın",
+    "male": "Erkek",
+    "other": "Diğer"
+  },
+  "risk": {
+    "level": {
+      "low": "Düşük Risk",
+      "medium": "Orta Risk",
+      "high": "Yüksek Risk",
+      "critical": "Kritik Risk"
+    }
+  },
+  "severity": {
+    "low": "Düşük",
+    "medium": "Orta",
+    "high": "Yüksek",
+    "critical": "Kritik"
+  },
+  "sidebar": {
+    "patient_selection": "Hasta Seçimi",
+    "mode": {
+      "label": "Hasta girişi",
+      "demo": "Demo hasta seç",
+      "manual": "Manuel hasta gir"
+    },
+    "demo_patient": "Demo hasta",
+    "age": "Yaş",
+    "gender": "Cinsiyet",
+    "current_medications": "Mevcut ilaçlar",
+    "current_medications_help": "İlaçları virgülle ayırarak yazın. Marka adı da yazabilirsiniz (örn. Coumadin).",
+    "creatinine": "Kreatinin",
+    "data_sources": "Veri Kaynakları",
+    "openfda": "openFDA etiket verisi",
+    "openfda_help": "Yeni ilacın FDA prospektüs bilgilerini (uyarılar, etkileşim metni) çeker.",
+    "gemini": "Gemini yapay zeka özeti",
+    "gemini_help": "Bulguları Gemini ile Türkçe klinik özete dönüştürür. GEMINI_API_KEY gerektirir.",
+    "rxnorm_active": "RxNorm veritabanı aktif (lokal)",
+    "rxnorm_missing": "RxNorm veritabanı bulunamadı. `scripts/build_rxnorm_db.py` ile üretebilirsiniz; uygulama onsuz da çalışır."
+  },
+  "prescription": {
+    "header": "Reçete Güvenlik Analizi",
+    "mode": {
+      "label": "Yeni ilaç giriş yöntemi",
+      "list": "Listeden seç",
+      "manual": "Manuel yaz"
+    },
+    "new_medication": "Yeni yazılmak istenen ilaç",
+    "new_medication_help": "Etken madde veya marka adı yazabilirsiniz (örn. warfarin ya da Coumadin).",
+    "rxnorm_brand": "RxNorm: {name} bir marka adı — etken madde: {ingredients} (RXCUI {rxcui})",
+    "rxnorm_match": "RxNorm: {name} (RXCUI {rxcui})",
+    "rxnorm_suggestions": "RxNorm'da tam eşleşme yok. Şunlardan birini mi demek istediniz? {suggestions}",
+    "rxnorm_no_match": "RxNorm'da eşleşme bulunamadı; isim olduğu gibi kullanılacak."
+  },
+  "patient_summary": {
+    "patient_info": "Hasta Bilgileri",
+    "medication_count": "Mevcut ilaç sayısı",
+    "current_medications": "Mevcut İlaçlar",
+    "no_medications": "Mevcut ilaç girilmedi.",
+    "lab_values": "Laboratuvar Değerleri"
+  },
+  "actions": {
+    "analyze": "Analiz Et",
+    "download_report": "Markdown raporu indir"
+  },
+  "analysis": {
+    "spinner": "Analiz yapılıyor (RxNorm + openFDA + Gemini)...",
+    "error": "Analiz şu anda tamamlanamadı. Girdileri kontrol edip yeniden deneyin.",
+    "error_hint": "Sorun devam ederse harici veri kaynaklarını kapatıp çevrimdışı modu deneyin.",
+    "result": "Analiz Sonucu",
+    "safety_score": "Güvenlik Skoru",
+    "finding_count": "{count} bulgu",
+    "rule_summary": "Kural Tabanlı Özet",
+    "ai_evaluation": "Yapay Zeka Değerlendirmesi",
+    "ai_model_note": "Model: {model} · Bu özet bilgilendirme amaçlıdır.",
+    "ai_unavailable": "Yapay zeka özeti üretilemedi (API anahtarı veya bağlantı sorunu). Kural tabanlı özet geçerlidir.",
+    "idle": "Analizi başlatmak için hasta bilgilerini kontrol edip Analiz Et butonuna basın."
+  },
+  "tabs": {
+    "summary": "📋 Özet",
+    "findings": "⚠️ Risk Bulguları",
+    "drug_info": "💊 İlaç Bilgisi",
+    "raw": "🧾 Ham Çıktı"
+  },
+  "findings": {
+    "recommendation": "Öneri",
+    "source": "Kaynak",
+    "agent": "Ajan",
+    "none": "Belirgin bir risk bulgusu tespit edilmedi.",
+    "table_view": "📊 Tablo görünümü",
+    "columns": {
+      "severity": "Şiddet",
+      "title": "Başlık",
+      "description": "Açıklama",
+      "recommendation": "Öneri",
+      "agent": "Ajan",
+      "source": "Kaynak"
+    }
+  },
+  "drug_info": {
+    "unavailable": "İlaç bilgisi toplanamadı.",
+    "query": "Sorgu",
+    "source": "Veri kaynağı",
+    "rxnorm_match": "RxNorm eşleşmesi",
+    "ingredients": "Etken madde(ler)",
+    "card_title": "İlaç Künyesi",
+    "boxed_warning": "FDA Kutulu Uyarı",
+    "warnings": "FDA Uyarılar (İngilizce)",
+    "interactions": "FDA Etkileşim Metni (İngilizce)",
+    "indications": "FDA Endikasyonlar (İngilizce)",
+    "openfda_missing": "openFDA etiket verisi bulunamadı veya kapalı."
+  }
+}

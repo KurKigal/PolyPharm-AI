@@ -1,6 +1,7 @@
 [
   {
     "name": "Demo Hasta 1 - Warfarin kullanan yaşlı hasta",
+    "name_en": "Demo Patient 1 - Older adult using warfarin",
     "age": 72,
     "gender": "Erkek",
     "current_medications": [
@@ -19,6 +20,7 @@
   },
   {
     "name": "Demo Hasta 2 - Karaciğer enzimi yüksek hasta",
+    "name_en": "Demo Patient 2 - Elevated liver enzymes",
     "age": 58,
     "gender": "Kadın",
     "current_medications": [
@@ -34,6 +36,7 @@
   },
   {
     "name": "Demo Hasta 3 - Ciddi renal risk",
+    "name_en": "Demo Patient 3 - Severe renal risk",
     "age": 76,
     "gender": "Kadın",
     "current_medications": [
@@ -53,6 +56,7 @@
   },
   {
     "name": "Demo Hasta 5 - Marka adıyla ilaç kullanan hasta (RxNorm)",
+    "name_en": "Demo Patient 5 - Brand-name medications (RxNorm)",
     "age": 68,
     "gender": "Kadın",
     "current_medications": [
@@ -71,6 +75,7 @@
   },
   {
     "name": "Demo Hasta 4 - Düşük riskli profil",
+    "name_en": "Demo Patient 4 - Low-risk profile",
     "age": 42,
     "gender": "Erkek",
     "current_medications": [

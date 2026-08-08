@@ -1,234 +1,176 @@
 [
   {
-    "drug_a": "warfarin",
-    "drug_b": "aspirin",
-    "severity": "high",
-    "description": "Warfarin ve aspirin birlikte kullanıldığında kanama riski artabilir.",
-    "recommendation": "Kanama riski açısından klinik değerlendirme, INR takibi ve alternatif analjezik/antiagregan seçenekleri düşünülmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "warfarin", "drug_b": "aspirin", "severity": "high",
+    "description": {"tr": "Warfarin ve aspirin birlikte kullanıldığında kanama riski artabilir.", "en": "Concomitant use of warfarin and aspirin may increase bleeding risk."},
+    "recommendation": {"tr": "Kanama riski açısından klinik değerlendirme, INR takibi ve alternatif analjezik/antiagregan seçenekleri düşünülmelidir.", "en": "Assess bleeding risk, consider closer INR monitoring, and review alternative analgesic or antiplatelet strategies."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "warfarin",
-    "drug_b": "ibuprofen",
-    "severity": "high",
-    "description": "Warfarin ve NSAID birlikte kullanımı gastrointestinal kanama riskini artırabilir.",
-    "recommendation": "NSAID yerine daha güvenli alternatifler değerlendirilmeli ve kanama bulguları yakından izlenmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "warfarin", "drug_b": "ibuprofen", "severity": "high",
+    "description": {"tr": "Warfarin ve NSAID birlikte kullanımı gastrointestinal kanama riskini artırabilir.", "en": "Concomitant warfarin and NSAID use may increase gastrointestinal bleeding risk."},
+    "recommendation": {"tr": "NSAID yerine daha güvenli alternatifler değerlendirilmeli ve kanama bulguları yakından izlenmelidir.", "en": "Consider safer alternatives to NSAIDs and monitor closely for signs of bleeding."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "metformin",
-    "drug_b": "furosemide",
-    "severity": "medium",
-    "description": "Metformin ve furosemide birlikte kullanıldığında sıvı dengesi ve böbrek fonksiyonları etkilenebilir.",
-    "recommendation": "eGFR, kreatinin ve hidrasyon durumu izlenmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "metformin", "drug_b": "furosemide", "severity": "medium",
+    "description": {"tr": "Metformin ve furosemide birlikte kullanıldığında sıvı dengesi ve böbrek fonksiyonları etkilenebilir.", "en": "Concomitant metformin and furosemide may affect fluid balance and renal function."},
+    "recommendation": {"tr": "eGFR, kreatinin ve hidrasyon durumu izlenmelidir.", "en": "Monitor eGFR, creatinine, and hydration status."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "ibuprofen",
-    "drug_b": "lisinopril",
-    "severity": "medium",
-    "description": "NSAID grubu ilaçlar ACE inhibitörleriyle birlikte böbrek fonksiyonlarını olumsuz etkileyebilir.",
-    "recommendation": "Böbrek fonksiyonu ve kan basıncı takibi yapılmalı; gerekirse alternatif analjezik düşünülmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "ibuprofen", "drug_b": "lisinopril", "severity": "medium",
+    "description": {"tr": "NSAID grubu ilaçlar ACE inhibitörleriyle birlikte böbrek fonksiyonlarını olumsuz etkileyebilir.", "en": "NSAIDs used with ACE inhibitors may adversely affect renal function."},
+    "recommendation": {"tr": "Böbrek fonksiyonu ve kan basıncı takibi yapılmalı; gerekirse alternatif analjezik düşünülmelidir.", "en": "Monitor renal function and blood pressure; consider an alternative analgesic when appropriate."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "atorvastatin",
-    "drug_b": "clarithromycin",
-    "severity": "high",
-    "description": "Clarithromycin bazı statinlerin kan düzeyini artırarak kas toksisitesi riskini yükseltebilir.",
-    "recommendation": "Statin geçici kesilmesi, doz azaltımı veya alternatif antibiyotik seçimi değerlendirilebilir.",
-    "source": "Demo interaction rule"
+    "drug_a": "atorvastatin", "drug_b": "clarithromycin", "severity": "high",
+    "description": {"tr": "Clarithromycin bazı statinlerin kan düzeyini artırarak kas toksisitesi riskini yükseltebilir.", "en": "Clarithromycin may increase exposure to some statins and raise the risk of muscle toxicity."},
+    "recommendation": {"tr": "Statin geçici kesilmesi, doz azaltımı veya alternatif antibiyotik seçimi değerlendirilebilir.", "en": "Consider temporary statin interruption, dose reduction, or an alternative antibiotic."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "simvastatin",
-    "drug_b": "clarithromycin",
-    "severity": "high",
-    "description": "Simvastatin ve clarithromycin birlikte kullanımı ciddi kas toksisitesi riskini artırabilir.",
-    "recommendation": "Kombinasyondan kaçınma veya alternatif antibiyotik/statin seçimi değerlendirilmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "simvastatin", "drug_b": "clarithromycin", "severity": "high",
+    "description": {"tr": "Simvastatin ve clarithromycin birlikte kullanımı ciddi kas toksisitesi riskini artırabilir.", "en": "Concomitant simvastatin and clarithromycin may substantially increase the risk of serious muscle toxicity."},
+    "recommendation": {"tr": "Kombinasyondan kaçınma veya alternatif antibiyotik/statin seçimi değerlendirilmelidir.", "en": "Consider avoiding the combination or selecting an alternative antibiotic or statin."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "digoxin",
-    "drug_b": "amiodarone",
-    "severity": "high",
-    "description": "Amiodarone digoxin düzeylerini artırabilir ve toksisite riskini yükseltebilir.",
-    "recommendation": "Digoxin dozu ve düzeyi klinik bağlamda yeniden değerlendirilmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "digoxin", "drug_b": "amiodarone", "severity": "high",
+    "description": {"tr": "Amiodarone digoxin düzeylerini artırabilir ve toksisite riskini yükseltebilir.", "en": "Amiodarone may increase digoxin concentrations and the risk of digoxin toxicity."},
+    "recommendation": {"tr": "Digoxin dozu ve düzeyi klinik bağlamda yeniden değerlendirilmelidir.", "en": "Reassess digoxin dose and serum concentration in clinical context."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "lisinopril",
-    "drug_b": "potassium chloride",
-    "severity": "high",
-    "description": "ACE inhibitörü ve potasyum takviyesi birlikte hiperkalemi riskini artırabilir.",
-    "recommendation": "Serum potasyum takibi ve potasyum takviyesi gerekliliği yeniden değerlendirilmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "lisinopril", "drug_b": "potassium chloride", "severity": "high",
+    "description": {"tr": "ACE inhibitörü ve potasyum takviyesi birlikte hiperkalemi riskini artırabilir.", "en": "An ACE inhibitor combined with potassium supplementation may increase hyperkalemia risk."},
+    "recommendation": {"tr": "Serum potasyum takibi ve potasyum takviyesi gerekliliği yeniden değerlendirilmelidir.", "en": "Monitor serum potassium and reassess the need for potassium supplementation."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "spironolactone",
-    "drug_b": "lisinopril",
-    "severity": "high",
-    "description": "Spironolactone ve ACE inhibitörü birlikte hiperkalemi riskini artırabilir.",
-    "recommendation": "Potasyum ve böbrek fonksiyonları yakından izlenmelidir.",
-    "source": "Demo interaction rule"
+    "drug_a": "spironolactone", "drug_b": "lisinopril", "severity": "high",
+    "description": {"tr": "Spironolactone ve ACE inhibitörü birlikte hiperkalemi riskini artırabilir.", "en": "Spironolactone combined with an ACE inhibitor may increase hyperkalemia risk."},
+    "recommendation": {"tr": "Potasyum ve böbrek fonksiyonları yakından izlenmelidir.", "en": "Monitor serum potassium and renal function closely."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "warfarin",
-    "drug_b": "amiodarone",
-    "severity": "high",
-    "description": "Amiodarone warfarin metabolizmasını inhibe ederek INR ve kanama riskini belirgin artırabilir.",
-    "recommendation": "INR yakından izlenmeli, warfarin dozunun azaltılması değerlendirilmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "warfarin", "drug_b": "amiodarone", "severity": "high",
+    "description": {"tr": "Amiodarone warfarin metabolizmasını inhibe ederek INR ve kanama riskini belirgin artırabilir.", "en": "Amiodarone may inhibit warfarin metabolism, substantially increasing INR and bleeding risk."},
+    "recommendation": {"tr": "INR yakından izlenmeli, warfarin dozunun azaltılması değerlendirilmelidir.", "en": "Monitor INR closely and consider warfarin dose reduction."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "warfarin",
-    "drug_b": "fluconazole",
-    "severity": "high",
-    "description": "Fluconazole warfarinin etkisini artırarak ciddi kanama riskine yol açabilir.",
-    "recommendation": "INR takibi sıklaştırılmalı, alternatif antifungal veya doz ayarı değerlendirilmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "warfarin", "drug_b": "fluconazole", "severity": "high",
+    "description": {"tr": "Fluconazole warfarinin etkisini artırarak ciddi kanama riskine yol açabilir.", "en": "Fluconazole may enhance warfarin effect and increase the risk of serious bleeding."},
+    "recommendation": {"tr": "INR takibi sıklaştırılmalı, alternatif antifungal veya doz ayarı değerlendirilmelidir.", "en": "Increase INR monitoring and consider an alternative antifungal or dose adjustment."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "warfarin",
-    "drug_b": "clopidogrel",
-    "severity": "high",
-    "description": "İki antitrombotik ajanın birlikte kullanımı kanama riskini artırır.",
-    "recommendation": "Kombinasyonun endikasyonu netleştirilmeli, kanama bulguları yakından izlenmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "warfarin", "drug_b": "clopidogrel", "severity": "high",
+    "description": {"tr": "İki antitrombotik ajanın birlikte kullanımı kanama riskini artırır.", "en": "Combining two antithrombotic agents increases bleeding risk."},
+    "recommendation": {"tr": "Kombinasyonun endikasyonu netleştirilmeli, kanama bulguları yakından izlenmelidir.", "en": "Confirm the indication for combination therapy and monitor closely for bleeding."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "clopidogrel",
-    "drug_b": "omeprazole",
-    "severity": "medium",
-    "description": "Omeprazole CYP2C19 üzerinden clopidogrelin aktif metabolite dönüşümünü azaltabilir.",
-    "recommendation": "Pantoprazol gibi etkileşimi daha düşük bir PPI alternatifi değerlendirilebilir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "clopidogrel", "drug_b": "omeprazole", "severity": "medium",
+    "description": {"tr": "Omeprazole CYP2C19 üzerinden clopidogrelin aktif metabolite dönüşümünü azaltabilir.", "en": "Omeprazole may reduce conversion of clopidogrel to its active metabolite through CYP2C19 inhibition."},
+    "recommendation": {"tr": "Pantoprazol gibi etkileşimi daha düşük bir PPI alternatifi değerlendirilebilir.", "en": "Consider a PPI with lower interaction potential, such as pantoprazole."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "aspirin",
-    "drug_b": "ibuprofen",
-    "severity": "medium",
-    "description": "İki NSAID'in birlikte kullanımı gastrointestinal kanama riskini artırır; ibuprofen aspirinin antiagregan etkisini azaltabilir.",
-    "recommendation": "Kombinasyondan kaçınılmalı veya mide koruması ve zamanlama ayarı değerlendirilmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "aspirin", "drug_b": "ibuprofen", "severity": "medium",
+    "description": {"tr": "İki NSAID'in birlikte kullanımı gastrointestinal kanama riskini artırır; ibuprofen aspirinin antiagregan etkisini azaltabilir.", "en": "Combined NSAID use may increase gastrointestinal bleeding risk, and ibuprofen may reduce aspirin's antiplatelet effect."},
+    "recommendation": {"tr": "Kombinasyondan kaçınılmalı veya mide koruması ve zamanlama ayarı değerlendirilmelidir.", "en": "Consider avoiding the combination or reviewing gastroprotection and dose timing."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "aspirin",
-    "drug_b": "methotrexate",
-    "severity": "high",
-    "description": "Salisilatlar methotrexate atılımını azaltarak toksisite riskini artırabilir.",
-    "recommendation": "Methotrexate düzeyi ve kan tablosu izlenmeli; alternatif analjezik düşünülmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "aspirin", "drug_b": "methotrexate", "severity": "high",
+    "description": {"tr": "Salisilatlar methotrexate atılımını azaltarak toksisite riskini artırabilir.", "en": "Salicylates may reduce methotrexate elimination and increase toxicity risk."},
+    "recommendation": {"tr": "Methotrexate düzeyi ve kan tablosu izlenmeli; alternatif analjezik düşünülmelidir.", "en": "Monitor methotrexate exposure and blood counts; consider an alternative analgesic."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "methotrexate",
-    "drug_b": "trimethoprim",
-    "severity": "critical",
-    "description": "Her iki ilaç da folat metabolizmasını baskılar; birlikte ciddi kemik iliği supresyonu bildirilebilir.",
-    "recommendation": "Kombinasyondan kaçınılmalıdır; zorunluysa yakın hematolojik izlem gerekir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "methotrexate", "drug_b": "trimethoprim", "severity": "critical",
+    "description": {"tr": "Her iki ilaç da folat metabolizmasını baskılar; birlikte ciddi kemik iliği supresyonu bildirilebilir.", "en": "Both medications impair folate metabolism; severe bone-marrow suppression may occur with combined use."},
+    "recommendation": {"tr": "Kombinasyondan kaçınılmalıdır; zorunluysa yakın hematolojik izlem gerekir.", "en": "Avoid the combination when possible; if unavoidable, close hematologic monitoring is required."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "digoxin",
-    "drug_b": "verapamil",
-    "severity": "high",
-    "description": "Verapamil digoxin düzeyini artırarak digoxin toksisitesi riskine yol açabilir.",
-    "recommendation": "Digoxin düzeyi izlenmeli ve doz azaltımı değerlendirilmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "digoxin", "drug_b": "verapamil", "severity": "high",
+    "description": {"tr": "Verapamil digoxin düzeyini artırarak digoxin toksisitesi riskine yol açabilir.", "en": "Verapamil may increase digoxin concentrations and the risk of digoxin toxicity."},
+    "recommendation": {"tr": "Digoxin düzeyi izlenmeli ve doz azaltımı değerlendirilmelidir.", "en": "Monitor digoxin concentrations and consider dose reduction."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "digoxin",
-    "drug_b": "furosemide",
-    "severity": "medium",
-    "description": "Furosemide kaynaklı hipokalemi digoxin toksisitesi riskini artırabilir.",
-    "recommendation": "Potasyum düzeyi izlenmeli, gerekirse replasman yapılmalıdır.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "digoxin", "drug_b": "furosemide", "severity": "medium",
+    "description": {"tr": "Furosemide kaynaklı hipokalemi digoxin toksisitesi riskini artırabilir.", "en": "Furosemide-induced hypokalemia may increase the risk of digoxin toxicity."},
+    "recommendation": {"tr": "Potasyum düzeyi izlenmeli, gerekirse replasman yapılmalıdır.", "en": "Monitor potassium and correct deficiency when clinically appropriate."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "metformin",
-    "drug_b": "iodinated contrast media",
-    "severity": "high",
-    "description": "Kontrast madde sonrası böbrek fonksiyonu bozulursa laktik asidoz riski artar.",
-    "recommendation": "Kontrast işlem öncesi/sonrası metforminin geçici kesilmesi değerlendirilmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "metformin", "drug_b": "iodinated contrast media", "severity": "high",
+    "description": {"tr": "Kontrast madde sonrası böbrek fonksiyonu bozulursa laktik asidoz riski artar.", "en": "If renal function deteriorates after iodinated contrast exposure, the risk of lactic acidosis may increase."},
+    "recommendation": {"tr": "Kontrast işlem öncesi/sonrası metforminin geçici kesilmesi değerlendirilmelidir.", "en": "Review whether temporary interruption of metformin is appropriate around the contrast procedure."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "simvastatin",
-    "drug_b": "amlodipine",
-    "severity": "medium",
-    "description": "Amlodipine simvastatin düzeyini artırarak miyopati riskini yükseltebilir.",
-    "recommendation": "Simvastatin dozunun 20 mg/gün ile sınırlandırılması önerilir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "simvastatin", "drug_b": "amlodipine", "severity": "medium",
+    "description": {"tr": "Amlodipine simvastatin düzeyini artırarak miyopati riskini yükseltebilir.", "en": "Amlodipine may increase simvastatin exposure and raise myopathy risk."},
+    "recommendation": {"tr": "Simvastatin dozunun 20 mg/gün ile sınırlandırılması önerilir.", "en": "Review simvastatin dose limits and current prescribing information."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "atorvastatin",
-    "drug_b": "gemfibrozil",
-    "severity": "high",
-    "description": "Fibrat ve statin kombinasyonu rabdomiyoliz riskini artırabilir.",
-    "recommendation": "Kas semptomları ve CK düzeyi izlenmeli; fenofibrat alternatifi değerlendirilebilir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "atorvastatin", "drug_b": "gemfibrozil", "severity": "high",
+    "description": {"tr": "Fibrat ve statin kombinasyonu rabdomiyoliz riskini artırabilir.", "en": "Combining a fibrate with a statin may increase the risk of rhabdomyolysis."},
+    "recommendation": {"tr": "Kas semptomları ve CK düzeyi izlenmeli; fenofibrat alternatifi değerlendirilebilir.", "en": "Monitor for muscle symptoms and CK when indicated; review lower-interaction alternatives."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "tramadol",
-    "drug_b": "sertraline",
-    "severity": "high",
-    "description": "Tramadol ve SSRI birlikte kullanımı serotonin sendromu riskini artırır.",
-    "recommendation": "Serotonerjik belirtiler açısından hasta bilgilendirilmeli ve izlenmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "tramadol", "drug_b": "sertraline", "severity": "high",
+    "description": {"tr": "Tramadol ve SSRI birlikte kullanımı serotonin sendromu riskini artırır.", "en": "Concomitant tramadol and SSRI use increases the risk of serotonin syndrome."},
+    "recommendation": {"tr": "Serotonerjik belirtiler açısından hasta bilgilendirilmeli ve izlenmelidir.", "en": "Educate and monitor for serotonergic symptoms."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "sertraline",
-    "drug_b": "sumatriptan",
-    "severity": "medium",
-    "description": "SSRI ve triptan kombinasyonunda serotonin sendromu bildirilmiştir.",
-    "recommendation": "Belirtiler konusunda hasta bilgilendirilmeli, düşük dozla başlanmalıdır.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "sertraline", "drug_b": "sumatriptan", "severity": "medium",
+    "description": {"tr": "SSRI ve triptan kombinasyonunda serotonin sendromu bildirilmiştir.", "en": "Serotonin syndrome has been reported with SSRI and triptan combinations."},
+    "recommendation": {"tr": "Belirtiler konusunda hasta bilgilendirilmeli ve klinik izlem yapılmalıdır.", "en": "Educate the patient about symptoms and provide appropriate clinical monitoring."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "ciprofloxacin",
-    "drug_b": "theophylline",
-    "severity": "high",
-    "description": "Ciprofloxacin theophylline klirensini azaltarak toksisiteye neden olabilir.",
-    "recommendation": "Theophylline düzeyi izlenmeli veya alternatif antibiyotik seçilmelidir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "ciprofloxacin", "drug_b": "theophylline", "severity": "high",
+    "description": {"tr": "Ciprofloxacin theophylline klirensini azaltarak toksisiteye neden olabilir.", "en": "Ciprofloxacin may reduce theophylline clearance and lead to toxicity."},
+    "recommendation": {"tr": "Theophylline düzeyi izlenmeli veya alternatif antibiyotik seçilmelidir.", "en": "Monitor theophylline concentrations or consider an alternative antibiotic."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "amiodarone",
-    "drug_b": "sotalol",
-    "severity": "critical",
-    "description": "İki QT uzatıcı antiaritmiğin birlikte kullanımı torsades de pointes riskini belirgin artırır.",
-    "recommendation": "Kombinasyondan kaçınılmalıdır; zorunlu durumda EKG ile yakın izlem gerekir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "amiodarone", "drug_b": "sotalol", "severity": "critical",
+    "description": {"tr": "İki QT uzatıcı antiaritmiğin birlikte kullanımı torsades de pointes riskini belirgin artırır.", "en": "Combining two QT-prolonging antiarrhythmics may markedly increase the risk of torsades de pointes."},
+    "recommendation": {"tr": "Kombinasyondan kaçınılmalıdır; zorunlu durumda EKG ile yakın izlem gerekir.", "en": "Avoid the combination when possible; if unavoidable, close ECG monitoring is required."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "furosemide",
-    "drug_b": "gentamicin",
-    "severity": "high",
-    "description": "Loop diüretik ve aminoglikozid birlikte ototoksisite ve nefrotoksisite riskini artırır.",
-    "recommendation": "Böbrek fonksiyonu ve işitme değerlendirmesi ile yakın izlem yapılmalıdır.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "furosemide", "drug_b": "gentamicin", "severity": "high",
+    "description": {"tr": "Loop diüretik ve aminoglikozid birlikte ototoksisite ve nefrotoksisite riskini artırır.", "en": "A loop diuretic combined with an aminoglycoside may increase ototoxicity and nephrotoxicity risk."},
+    "recommendation": {"tr": "Böbrek fonksiyonu ve işitme değerlendirmesi ile yakın izlem yapılmalıdır.", "en": "Monitor renal function closely and assess hearing when clinically indicated."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "levothyroxine",
-    "drug_b": "calcium carbonate",
-    "severity": "low",
-    "description": "Kalsiyum, levotiroksin emilimini azaltabilir.",
-    "recommendation": "İki ilaç arasında en az 4 saat ara verilmesi önerilir.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "levothyroxine", "drug_b": "calcium carbonate", "severity": "low",
+    "description": {"tr": "Kalsiyum, levotiroksin emilimini azaltabilir.", "en": "Calcium may reduce levothyroxine absorption."},
+    "recommendation": {"tr": "İki ilaç arasında en az 4 saat ara verilmesi önerilir.", "en": "Review administration timing and consider separating the medications according to prescribing guidance."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "omeprazole",
-    "drug_b": "diazepam",
-    "severity": "low",
-    "description": "Omeprazole diazepam metabolizmasını yavaşlatarak sedasyonu artırabilir.",
-    "recommendation": "Aşırı sedasyon açısından hasta izlenmeli, gerekirse doz ayarlanmalıdır.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "omeprazole", "drug_b": "diazepam", "severity": "low",
+    "description": {"tr": "Omeprazole diazepam metabolizmasını yavaşlatarak sedasyonu artırabilir.", "en": "Omeprazole may slow diazepam metabolism and increase sedation."},
+    "recommendation": {"tr": "Aşırı sedasyon açısından hasta izlenmeli, gerekirse doz yeniden değerlendirilmelidir.", "en": "Monitor for excessive sedation and reassess dose if clinically appropriate."},
+    "source": "Curated interaction rule"
   },
   {
-    "drug_a": "potassium chloride",
-    "drug_b": "spironolactone",
-    "severity": "high",
-    "description": "Potasyum replasmanı ile potasyum tutucu diüretik birlikte ciddi hiperkalemiye yol açabilir.",
-    "recommendation": "Serum potasyumu yakından izlenmeli, kombinasyon gerekliyse doz düşük tutulmalıdır.",
-    "source": "Curated demo interaction rule (Sprint 2)"
+    "drug_a": "potassium chloride", "drug_b": "spironolactone", "severity": "high",
+    "description": {"tr": "Potasyum replasmanı ile potasyum tutucu diüretik birlikte ciddi hiperkalemiye yol açabilir.", "en": "Potassium supplementation combined with a potassium-sparing diuretic may cause severe hyperkalemia."},
+    "recommendation": {"tr": "Serum potasyumu yakından izlenmeli ve kombinasyonun gerekliliği yeniden değerlendirilmelidir.", "en": "Monitor serum potassium closely and reassess the need for the combination."},
+    "source": "Curated interaction rule"
   }
 ]

@@ -1,0 +1,122 @@
+{
+  "app": {
+    "subtitle": "Intelligent Drug Interaction & Toxicity Simulator",
+    "department": "Prescription Safety · Decision Support",
+    "disclaimer": "This application is an educational decision-support demo. It must not be used for diagnosis, prescribing, or treatment decisions."
+  },
+  "common": {
+    "unknown": "unknown"
+  },
+  "gender": {
+    "female": "Female",
+    "male": "Male",
+    "other": "Other"
+  },
+  "risk": {
+    "level": {
+      "low": "Low Risk",
+      "medium": "Moderate Risk",
+      "high": "High Risk",
+      "critical": "Critical Risk"
+    }
+  },
+  "severity": {
+    "low": "Low",
+    "medium": "Moderate",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "sidebar": {
+    "patient_selection": "Patient Selection",
+    "mode": {
+      "label": "Patient input",
+      "demo": "Choose demo patient",
+      "manual": "Enter patient manually"
+    },
+    "demo_patient": "Demo patient",
+    "age": "Age",
+    "gender": "Gender",
+    "current_medications": "Current medications",
+    "current_medications_help": "Separate medications with commas. Brand names are also supported (e.g. Coumadin).",
+    "creatinine": "Creatinine",
+    "data_sources": "Data Sources",
+    "openfda": "openFDA label data",
+    "openfda_help": "Retrieves FDA label information for the new medication, including warnings and interaction text.",
+    "gemini": "Gemini AI summary",
+    "gemini_help": "Generates an AI-assisted clinical summary in the selected language. Requires GEMINI_API_KEY.",
+    "rxnorm_active": "Local RxNorm database is active",
+    "rxnorm_missing": "RxNorm database was not found. You can build it with `scripts/build_rxnorm_db.py`; the application still works without it."
+  },
+  "prescription": {
+    "header": "Prescription Safety Analysis",
+    "mode": {
+      "label": "New medication input method",
+      "list": "Select from list",
+      "manual": "Enter manually"
+    },
+    "new_medication": "New medication",
+    "new_medication_help": "Enter an active ingredient or brand name (e.g. warfarin or Coumadin).",
+    "rxnorm_brand": "RxNorm: {name} is a brand name — active ingredient: {ingredients} (RXCUI {rxcui})",
+    "rxnorm_match": "RxNorm: {name} (RXCUI {rxcui})",
+    "rxnorm_suggestions": "No exact RxNorm match. Did you mean one of these? {suggestions}",
+    "rxnorm_no_match": "No RxNorm match was found; the medication name will be used as entered."
+  },
+  "patient_summary": {
+    "patient_info": "Patient Information",
+    "medication_count": "Current medication count",
+    "current_medications": "Current Medications",
+    "no_medications": "No current medications entered.",
+    "lab_values": "Laboratory Values"
+  },
+  "actions": {
+    "analyze": "Analyze",
+    "download_report": "Download Markdown report"
+  },
+  "analysis": {
+    "spinner": "Running analysis (RxNorm + openFDA + Gemini)...",
+    "error": "The analysis could not be completed. Check the inputs and try again.",
+    "error_hint": "If the issue persists, disable external data sources and try offline mode.",
+    "result": "Analysis Result",
+    "safety_score": "Safety Score",
+    "finding_count": "{count} finding(s)",
+    "rule_summary": "Rule-Based Summary",
+    "ai_evaluation": "AI-Assisted Evaluation",
+    "ai_model_note": "Model: {model} · This summary is for informational purposes only.",
+    "ai_unavailable": "The AI summary could not be generated due to an API-key or connection issue. The rule-based result remains available.",
+    "idle": "Review the patient information and press Analyze to start the assessment."
+  },
+  "tabs": {
+    "summary": "📋 Summary",
+    "findings": "⚠️ Risk Findings",
+    "drug_info": "💊 Drug Information",
+    "raw": "🧾 Raw Output"
+  },
+  "findings": {
+    "recommendation": "Recommendation",
+    "source": "Source",
+    "agent": "Agent",
+    "none": "No explicit risk findings were detected.",
+    "table_view": "📊 Table view",
+    "columns": {
+      "severity": "Severity",
+      "title": "Title",
+      "description": "Description",
+      "recommendation": "Recommendation",
+      "agent": "Agent",
+      "source": "Source"
+    }
+  },
+  "drug_info": {
+    "unavailable": "Drug information could not be collected.",
+    "query": "Query",
+    "source": "Data source",
+    "rxnorm_match": "RxNorm match",
+    "ingredients": "Active ingredient(s)",
+    "card_title": "Drug Profile",
+    "boxed_warning": "FDA Boxed Warning",
+    "warnings": "FDA Warnings (English)",
+    "interactions": "FDA Interaction Text (English)",
+    "indications": "FDA Indications (English)",
+    "openfda_missing": "openFDA label data was not found or is disabled."
+  }
+}
