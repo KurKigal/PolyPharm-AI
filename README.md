@@ -4,310 +4,365 @@
 
 ### Explainable polypharmacy risk analysis and prescription safety support
 
-PolyPharm AI is an educational clinical decision-support prototype that
-combines deterministic risk rules, RxNorm drug normalization, openFDA drug
-labels and optional LLM-generated explanations.
+A bilingual, deterministic-first clinical decision-support **engineering prototype**
+for exploring medication interactions, laboratory risk signals, evidence provenance,
+explainable scoring, and optional LLM-assisted explanations.
 
- [Architecture](docs/architecture.md) ·
-[Methodology](docs/methodology.md) · [Limitations](docs/limitations.md)
+[Architecture](docs/architecture.md) ·
+[Methodology](docs/methodology.md) ·
+[Evaluation](docs/evaluation.md) ·
+[Limitations](docs/limitations.md) ·
+[Release Guide](docs/release.md)
 
 </div>
 
 > [!WARNING]
-> PolyPharm AI is a research and educational prototype.
-> It is not a medical device and must not be used for diagnosis,
-> prescribing, treatment decisions or real patient care.
+> **PolyPharm AI is a research and educational prototype.**
+> It is not a medical device and must not be used for diagnosis, prescribing,
+> treatment decisions, or real patient care. Do not enter identifiable patient data.
 
-## Overview
+## Project Snapshot
 
-Polypharmacy is the concurrent use of multiple medications and is especially
-common among older adults and patients with chronic conditions.
+| Capability | Status |
+|---|---|
+| Deterministic drug-interaction rules | Implemented |
+| Renal / hepatic / polypharmacy rules | Implemented |
+| RxNorm normalization | Implemented |
+| openFDA label enrichment | Optional |
+| Explainable safety score | Implemented |
+| Rule/evidence provenance | Implemented |
+| English / Turkish output | Implemented |
+| Optional Gemini explanation | Implemented |
+| Synthetic evaluation suite | **42/42 cases passed** |
+| Expected-rule recall | **39/39 (100%)** |
+| Docker runtime | Verified |
+| GitHub Actions quality pipeline | Included |
 
-Evaluating a new prescription may require clinicians to consider:
+The evaluation metrics above are **software regression/behavioral metrics against
+synthetic expectations**, not clinical validation metrics.
 
-- potential drug-drug interactions,
-- kidney function,
-- liver function,
-- patient age,
-- medication count,
-- boxed warnings,
-- and incomplete or conflicting drug information.
+## Why This Project Exists
 
-PolyPharm AI demonstrates how these signals can be collected and presented in
-an explainable, modular and failure-tolerant software architecture.
+Polypharmacy risk assessment involves more than checking whether two medication
+names appear in an interaction table. A useful engineering prototype also needs
+to answer:
 
-The system does not replace clinical judgement. Its purpose is to explore
-software engineering and AI patterns for clinical decision-support systems.
+- Was the medication normalized from a brand name to an ingredient?
+- Did the signal come from a curated rule, a prototype laboratory rule, or an
+  official label?
+- Which finding changed the safety score?
+- Which rule version produced that finding?
+- Can the system continue working if an external API or LLM is unavailable?
+- Can the deterministic behavior be regression-tested reproducibly?
+
+PolyPharm AI was built around those questions.
 
 ## Key Features
 
-- Medication name normalization using a local RxNorm SQLite database
-- Brand-to-ingredient resolution
-- Rule-based drug-drug interaction analysis
-- Kidney and liver risk screening
-- Age and polypharmacy risk analysis
-- openFDA drug-label and boxed-warning retrieval
-- FDA label interaction scanning
-- Explainable safety score
-- Risk findings with severity, source and recommendation
-- Optional Turkish clinical explanation generated with Google Gemini
-- Offline fallback when external services are unavailable
-- Markdown report export
-- JSON analysis output
-- Automated unit, integration and smoke tests
-- GitHub Actions continuous integration
+- Local RxNorm-backed medication normalization and brand-to-ingredient resolution
+- Curated deterministic drug-drug interaction rules
+- Rule-based renal, hepatic, age, and polypharmacy risk signals
+- Optional openFDA label retrieval and interaction-section scanning
+- Versioned scoring policy
+- Per-finding score attribution
+- Finding categories, evidence types, rule IDs, rule versions, and evidence references
+- Conservative duplicate-finding suppression
+- Bilingual English / Turkish UI, findings, reports, and optional AI explanations
+- Markdown report export and structured JSON output
+- Offline deterministic fallback when external services are unavailable
+- Synthetic evaluation framework with strict regression gating
+- Ruff, mypy, pytest, coverage reporting, pre-commit, Docker, and GitHub Actions
 
-## How It Works
+## Architecture
 
 ```mermaid
 flowchart LR
-    UI[Streamlit Interface]
-    INPUT[Patient and Prescription Input]
+    UI[Streamlit UI]
+    INPUT[Patient + Prescription]
     RX[RxNorm Normalization]
-    RULES[Local Interaction Rules]
-    LAB[Laboratory Risk Analysis]
-    FDA[openFDA Drug Labels]
-    SCORE[Explainable Scoring]
-    REPORT[Report Generator]
+    LOCAL[Curated DDI Rules]
+    LAB[Lab / Polypharmacy Rules]
+    FDA[openFDA Labels]
+    DEDUPE[Finding Deduplication]
+    SCORE[Versioned Explainable Scoring]
+    REPORT[Localized Report]
     LLM[Optional Gemini Explanation]
 
     UI --> INPUT
     INPUT --> RX
-    RX --> RULES
+    RX --> LOCAL
     INPUT --> LAB
     RX --> FDA
-    RULES --> SCORE
-    LAB --> SCORE
-    FDA --> SCORE
+    LOCAL --> DEDUPE
+    LAB --> DEDUPE
+    FDA --> DEDUPE
+    DEDUPE --> SCORE
     SCORE --> REPORT
     SCORE --> LLM
     LLM --> REPORT
 ```
 
+The deterministic pipeline owns the risk findings and safety score. Gemini is
+an optional explanation layer and does **not** calculate or modify the score.
+
+See [docs/architecture.md](docs/architecture.md) for the full design.
+
 ## Analysis Pipeline
 
-1. The medication names are normalized through RxNorm.
-2. Local deterministic interaction rules are evaluated.
-3. Laboratory values are checked for kidney and liver risk indicators.
-4. openFDA labels are queried when the service is enabled.
-5. Findings are sorted by severity.
-6. A deterministic safety score and risk level are calculated.
-7. A structured report is generated.
-8. Gemini may optionally convert the structured findings into a
-   user-friendly Turkish explanation.
+1. Validate patient and prescription input with Pydantic.
+2. Normalize medication names with RxNorm when available.
+3. Evaluate curated local interaction rules.
+4. Evaluate renal, hepatic, and polypharmacy prototype rules.
+5. Optionally inspect openFDA drug labels.
+6. Attach category, source, evidence type, rule identity, and version metadata.
+7. Conservatively suppress exact logical duplicates.
+8. Calculate the deterministic safety score using a versioned scoring policy.
+9. Produce a full score breakdown with per-finding deductions.
+10. Generate a localized Markdown report.
+11. Optionally ask Gemini to explain the already-computed structured result.
 
-The LLM does not calculate the safety score and is not the source of the
-clinical risk decisions.
+## Explainable Scoring
 
-## Architecture
+The current prototype policy starts at `100` and applies deterministic penalties:
+
+| Severity | Base penalty |
+|---|---:|
+| Critical | -50 |
+| High | -35 |
+| Medium | -20 |
+| Low | -10 |
+
+Each score contribution preserves:
+
+```text
+finding_index
+severity
+category
+base_penalty
+applied_penalty
+source
+agent
+evidence_type
+rule_id
+rule_version
+evidence_reference
+```
+
+Category-cap support exists in the scoring engine but is intentionally disabled
+by default. The project does not invent clinical-looking calibration parameters
+without an evaluation basis.
+
+See [docs/methodology.md](docs/methodology.md).
+
+## Evidence & Provenance
+
+Examples:
+
+```text
+Curated interaction rule
+  rule_id: DDI-aspirin-warfarin
+  rule_version: 1.0.0
+  evidence_reference: polypharm-curated-ddi@1.0.0
+```
+
+```text
+Prototype renal rule
+  rule_id: LAB-RENAL-MODERATE
+  rule_version: 1.0.0
+  evidence_type: prototype_rule
+```
+
+```text
+openFDA label finding
+  evidence_type: official_label
+  evidence_reference: openFDA:drug_interactions
+```
+
+Official openFDA excerpts remain in their source language rather than being
+silently translated and presented as if the translation were official label text.
+
+## Synthetic Evaluation
+
+The deterministic evaluation suite contains **42 synthetic cases** covering all
+curated DDI rules, negative controls, laboratory rules, polypharmacy rules, and
+a combined multi-signal case.
+
+Latest reviewed local baseline:
+
+```text
+Dataset: polypharm-synthetic-evaluation@1.0.0
+Scoring policy: 1.1.0
+Cases: 42/42 passed (100.0%)
+Expected-rule recall: 100.0% (39/39)
+Risk-level agreement: 100.0%
+Score-range agreement: 100.0%
+Unexpected findings: 0
+Duplicates suppressed: 0
+```
+
+This means the implementation matches the project's configured synthetic
+expectations. It does **not** demonstrate clinical accuracy.
+
+Run it with:
+
+```bash
+python scripts/run_evaluation.py --strict
+```
+
+See [docs/evaluation.md](docs/evaluation.md).
+
+## Repository Structure
 
 ```text
 PolyPharm-AI/
 ├── app/
+│   ├── components/
+│   ├── locales/
+│   ├── styles/
+│   ├── i18n.py
+│   ├── runtime.py
 │   └── main.py
 ├── agents/
-│   ├── fda_interaction_agent.py
-│   ├── gemini_explainer.py
-│   ├── interaction_agent.py
-│   ├── lab_risk_agent.py
-│   ├── orchestrator.py
-│   ├── report_agent.py
-│   └── scoring_agent.py
+├── core/
 ├── providers/
-│   ├── drug_data_service.py
-│   ├── local_json_provider.py
-│   ├── openfda_client.py
-│   └── rxnorm_provider.py
 ├── models/
-│   └── schemas.py
+├── evaluation/
 ├── data/
 ├── scripts/
 ├── tests/
-└── docs/
+├── docs/
+├── Dockerfile
+├── compose.yaml
+├── pyproject.toml
+├── requirements.txt
+└── requirements-dev.txt
 ```
-
-### Core Components
-
-| Component                  | Responsibility                                        |
-| -------------------------- | ----------------------------------------------------- |
-| `Orchestrator`             | Coordinates the complete analysis workflow            |
-| `InteractionAgent`         | Evaluates local deterministic interaction rules       |
-| `FdaLabelInteractionAgent` | Searches drug-label interaction sections              |
-| `LabRiskAgent`             | Evaluates kidney, liver and polypharmacy risks        |
-| `ScoringAgent`             | Produces the deterministic safety score               |
-| `ReportAgent`              | Generates summaries and Markdown reports              |
-| `GeminiExplainer`          | Produces an optional natural-language explanation     |
-| `DrugDataService`          | Provides a facade over RxNorm, openFDA and local data |
 
 ## Technology Stack
 
-* Python
-* Streamlit
-* Pydantic
-* Pandas
-* SQLite
-* RxNorm
-* openFDA
-* Google Gemini
-* Pytest
-* GitHub Actions
+**Application:** Python 3.11, Streamlit, Pydantic, Pandas  
+**Medication data:** RxNorm, SQLite, openFDA  
+**AI explanation:** Google Gemini (optional)  
+**Quality:** Pytest, pytest-cov, Ruff, mypy, pre-commit  
+**Delivery:** Docker, Docker Compose, GitHub Actions
 
-## Installation
-
-### 1. Clone the repository
+## Quick Start
 
 ```bash
 git clone https://github.com/KurKigal/PolyPharm-AI.git
 cd PolyPharm-AI
-```
-
-### 2. Create a virtual environment
-
-```bash
 python -m venv .venv
-```
-
-Windows:
-
-```powershell
-.venv\Scripts\activate
-```
-
-macOS/Linux:
-
-```bash
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure optional external services
-
-```bash
-cp .env.example .env
 ```
 
 Windows PowerShell:
 
 ```powershell
-Copy-Item .env.example .env
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+streamlit run app/main.py
 ```
+
+macOS / Linux:
+
+```bash
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+streamlit run app/main.py
+```
+
+Open `http://localhost:8501`.
+
+### Docker
+
+```bash
+docker build -t polypharm-ai .
+docker run --rm -p 8501:8501 polypharm-ai
+```
+
+Or:
+
+```bash
+docker compose up --build
+```
+
+## Optional External Services
+
+Create `.env` from `.env.example`:
 
 ```env
 GEMINI_API_KEY=
 OPENFDA_API_KEY=
 ```
 
-Both variables are optional. Without API keys, the application continues to
-operate using its local rule-based analysis mode.
+Both are optional. Without them, the application retains its local deterministic path.
 
-### 5. Run the application
-
-```bash
-streamlit run app/main.py
-```
-
-## Running Tests
+## Development
 
 ```bash
-python -m pytest -q
+python -m pip install -r requirements-dev.txt
+python scripts/verify.py
 ```
 
-The test suite covers:
+The verification pipeline checks Ruff, targeted mypy, pytest with coverage, and
+the deterministic synthetic evaluation.
 
-* interaction analysis,
-* laboratory risk analysis,
-* scoring,
-* reporting,
-* RxNorm normalization,
-* openFDA client behavior,
-* AI explanation fallback,
-* orchestration,
-* and Streamlit smoke tests.
+Optional:
 
-## Data Sources
+```bash
+pre-commit install
+pre-commit run --all-files
+```
 
-### RxNorm
+## CI / Deployment Readiness
 
-RxNorm is used for medication-name normalization and brand-to-ingredient
-resolution. The project uses a locally generated SQLite database to reduce
-runtime dependency on external services.
+GitHub Actions contains separate gates for code quality, static type checking,
+automated tests, coverage generation, deterministic evaluation, Docker image
+build, and a Streamlit container health check.
 
-### openFDA
+## Safety Model
 
-openFDA drug-label data is used to retrieve:
+PolyPharm AI deliberately separates deterministic analysis from generative AI.
+The LLM does not create the score, change severity, or determine deterministic
+rule matches.
 
-* boxed warnings,
-* interaction sections,
-* warnings and precautions,
-* and selected official label context.
+## Limitations
 
-Availability of a drug label does not guarantee that every possible clinical
-interaction is represented.
+The local dataset is limited, laboratory logic is simplified, the safety score
+is not clinically calibrated, openFDA is not a complete structured interaction
+database, the evaluation is synthetic, and Gemini output may be inaccurate.
 
-### Local Interaction Rules
+Read [docs/limitations.md](docs/limitations.md).
 
-A small curated local dataset is used to demonstrate deterministic interaction
-analysis. It is not a complete clinical interaction database.
+## Roadmap After v1.0
 
-## Safety and Explainability
+- drug-class and ontology-aware interaction matching
+- larger externally reviewed interaction datasets
+- expert-reviewed synthetic cases
+- clinically meaningful scoring research
+- confidence/evidence-quality modelling
+- richer RxNorm concept handling
+- observability and telemetry
+- hosted demo deployment
+- domain-expert UI/UX review
 
-PolyPharm AI separates deterministic analysis from generative AI:
+## Release Status
 
-* interaction and laboratory findings are generated by explicit rules,
-* the safety score is deterministic,
-* the data source is attached to each finding,
-* the LLM is used only for optional explanation,
-* the application remains operational when the LLM is unavailable.
+**Target release:** `v1.0.0` — portfolio / engineering prototype.
 
-This design reduces the risk of allowing generated text to silently alter the
-underlying risk assessment.
-
-## Current Limitations
-
-* The local interaction dataset has limited coverage.
-* Laboratory rules are simplified and are not patient-specific dosing rules.
-* openFDA label text is not a complete structured interaction database.
-* The safety score has not been clinically validated.
-* The application has not been evaluated as a medical device.
-* Generated explanations may contain inaccuracies.
-* Real patient data must not be entered into the public demo.
-* Results must not be used for clinical decision-making.
-
-## Roadmap
-
-* [ ] Refactor the Streamlit interface into reusable components
-* [ ] Add transparent score attribution
-* [ ] Version and document all clinical rules
-* [ ] Build a synthetic evaluation dataset
-* [ ] Add drug-class-based interaction detection
-* [ ] Add structured confidence and provenance metadata
-* [ ] Add Docker deployment
-* [ ] Publish a hosted demonstration
-* [ ] Add performance and evaluation metrics
-* [ ] Conduct domain-expert interface review
-
-## Project Status
-
-PolyPharm AI is under active individual development.
-
-The current version should be considered an engineering and research prototype,
-not a clinically validated product.
+This is not a clinical product release.
 
 ## Author
 
 **Emirhan Keser**
 
-Computer Engineer focused on machine learning, data science and software
+Computer Engineer focused on machine learning, data science, and software
 product development.
 
-* GitHub: [KurKigal](https://github.com/KurKigal)
-* LinkedIn: [Emirhan Keser](https://www.linkedin.com/in/emirhan-keser/)
+- GitHub: [KurKigal](https://github.com/KurKigal)
+- LinkedIn: [Emirhan Keser](https://www.linkedin.com/in/emirhan-keser/)
 
 ## License
 
-A license will be added before the first public release.
+No open-source license is asserted by this Stage 7 package. Before publishing
+one, confirm that you have the right to license all repository content,
+especially if earlier contributors authored portions of the code.

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software in academic or engineering work, please cite this repository."
+title: "PolyPharm AI"
+type: software
+authors:
+  - family-names: "Keser"
+    given-names: "Emirhan"
+repository-code: "https://github.com/KurKigal/PolyPharm-AI"
+version: "1.0.0"
+date-released: "2026-08-08"
+abstract: >-
+  An educational engineering prototype for explainable polypharmacy risk
+  analysis, deterministic prescription-safety rules, provenance-aware scoring,
+  and optional LLM-assisted explanations.
+keywords:
+  - polypharmacy
+  - explainable-ai
+  - clinical-decision-support
+  - drug-interactions
+  - streamlit
