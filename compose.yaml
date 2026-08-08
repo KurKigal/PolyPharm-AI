@@ -1,0 +1,11 @@
+services:
+  polypharm-ai:
+    build:
+      context: .
+    image: polypharm-ai:local
+    ports:
+      - "8501:8501"
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENFDA_API_KEY: ${OPENFDA_API_KEY:-}
+    restart: unless-stopped
