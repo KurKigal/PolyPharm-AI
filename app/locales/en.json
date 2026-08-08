@@ -106,6 +106,22 @@
       "source": "Source"
     }
   },
+  "score_breakdown": {
+    "title": "🔎 Why this score?",
+    "starting_score": "Starting score",
+    "total_penalty": "Total penalty",
+    "raw_score": "Raw score",
+    "final_score": "Final score",
+    "no_penalties": "No score deductions were applied.",
+    "disclaimer": "This attribution explains deterministic software rules. The score is not a clinically validated risk scale.",
+    "columns": {
+      "finding": "Finding",
+      "severity": "Severity",
+      "penalty": "Penalty",
+      "source": "Source",
+      "agent": "Agent"
+    }
+  },
   "drug_info": {
     "unavailable": "Drug information could not be collected.",
     "query": "Query",

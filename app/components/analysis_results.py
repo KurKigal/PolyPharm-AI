@@ -37,7 +37,10 @@ def render_analysis_results(
     use_ai_summary: bool,
 ) -> None:
     risk_key = risk_level_key(result.risk_level)
-    risk_meta = RISK_LEVEL_META.get(risk_key, RISK_LEVEL_META["medium"])
+    risk_meta = RISK_LEVEL_META.get(
+        risk_key,
+        RISK_LEVEL_META["medium"],
+    )
     score_color = risk_meta["ink"]
 
     st.markdown(
@@ -73,13 +76,23 @@ def render_analysis_results(
     )
 
     with tab_summary:
-        _render_summary(result, t, use_ai_summary)
+        _render_summary(
+            result,
+            t,
+            use_ai_summary,
+        )
 
     with tab_findings:
-        _render_findings(result, t)
+        _render_findings(
+            result,
+            t,
+        )
 
     with tab_drug:
-        _render_drug_info(result, t)
+        _render_drug_info(
+            result,
+            t,
+        )
 
     with tab_raw:
         st.json(result.model_dump())
@@ -95,23 +108,49 @@ def render_analysis_results(
 
 def render_idle_note(t: Translator) -> None:
     st.markdown(
-        f'<div class="pp-note pp-fade" style="animation-delay:.26s">🩺 {esc(t("analysis.idle"))}</div>',
+        (
+            '<div class="pp-note pp-fade" style="animation-delay:.26s">'
+            f'🩺 {esc(t("analysis.idle"))}</div>'
+        ),
         unsafe_allow_html=True,
     )
 
 
-def severity_badge(severity: str, t: Translator) -> str:
-    icons = {"critical": "🔴", "high": "🟠", "medium": "🟡", "low": "🔵"}
-    label = t(f"severity.{severity}") if severity in SEVERITY_META else severity
+def severity_badge(
+    severity: str,
+    t: Translator,
+) -> str:
+    icons = {
+        "critical": "🔴",
+        "high": "🟠",
+        "medium": "🟡",
+        "low": "🔵",
+    }
+    label = (
+        t(f"severity.{severity}")
+        if severity in SEVERITY_META
+        else severity
+    )
     return f"{icons.get(severity, '')} {label}".strip()
 
 
-def severity_pill(severity: str, t: Translator) -> str:
-    meta = SEVERITY_META.get(severity, SEVERITY_META["low"])
-    label = t(f"severity.{severity}") if severity in SEVERITY_META else severity
+def severity_pill(
+    severity: str,
+    t: Translator,
+) -> str:
+    meta = SEVERITY_META.get(
+        severity,
+        SEVERITY_META["low"],
+    )
+    label = (
+        t(f"severity.{severity}")
+        if severity in SEVERITY_META
+        else severity
+    )
+
     return (
         f'<span class="pp-pill" style="background:{meta["tint"]};color:{meta["ink"]}">'
-        f'{esc(label)}</span>'
+        f"{esc(label)}</span>"
     )
 
 
@@ -130,15 +169,25 @@ def _render_summary(
         unsafe_allow_html=True,
     )
 
+    _render_score_breakdown(
+        result,
+        t,
+    )
+
     if result.ai_summary:
         paragraphs = "".join(
             f'<p style="margin:.45rem 0;font-size:.95rem">{part}</p>'
             for part in (
-                re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc(paragraph.strip()))
+                re.sub(
+                    r"\*\*(.+?)\*\*",
+                    r"<strong>\1</strong>",
+                    esc(paragraph.strip()),
+                )
                 for paragraph in result.ai_summary.split("\n\n")
             )
             if part
         )
+
         st.markdown(
             f"""
 <div class="pp-card pp-fade" style="animation-delay:.1s;margin-top:.8rem">
@@ -151,10 +200,79 @@ def _render_summary(
             unsafe_allow_html=True,
         )
     elif use_ai_summary:
-        st.caption(t("analysis.ai_unavailable"))
+        st.caption(
+            t("analysis.ai_unavailable")
+        )
 
 
-def _render_findings(result: AnalysisResult, t: Translator) -> None:
+def _render_score_breakdown(
+    result: AnalysisResult,
+    t: Translator,
+) -> None:
+    breakdown = result.score_breakdown
+
+    with st.expander(
+        t("score_breakdown.title")
+    ):
+        col_start, col_penalty, col_raw, col_final = st.columns(4)
+
+        col_start.metric(
+            t("score_breakdown.starting_score"),
+            breakdown.starting_score,
+        )
+        col_penalty.metric(
+            t("score_breakdown.total_penalty"),
+            f"-{breakdown.total_penalty}" if breakdown.total_penalty else "0",
+        )
+        col_raw.metric(
+            t("score_breakdown.raw_score"),
+            breakdown.raw_score,
+        )
+        col_final.metric(
+            t("score_breakdown.final_score"),
+            f"{breakdown.final_score}/100",
+        )
+
+        if breakdown.contributions:
+            contribution_df = pd.DataFrame(
+                [
+                    {
+                        t("score_breakdown.columns.finding"): contribution.title,
+                        t("score_breakdown.columns.severity"): severity_badge(
+                            contribution.severity,
+                            t,
+                        ),
+                        t("score_breakdown.columns.penalty"): (
+                            f"-{contribution.penalty}"
+                            if contribution.penalty
+                            else "0"
+                        ),
+                        t("score_breakdown.columns.source"): contribution.source,
+                        t("score_breakdown.columns.agent"): contribution.agent,
+                    }
+                    for contribution in breakdown.contributions
+                ]
+            )
+
+            st.dataframe(
+                contribution_df,
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.caption(
+                t("score_breakdown.no_penalties")
+            )
+
+        st.caption(
+            t("score_breakdown.disclaimer")
+        )
+
+
+def _render_findings(
+    result: AnalysisResult,
+    t: Translator,
+) -> None:
     if not result.findings:
         st.markdown(
             f'<div class="pp-clear pp-fade">✅ {esc(t("findings.none"))}</div>',
@@ -163,7 +281,11 @@ def _render_findings(result: AnalysisResult, t: Translator) -> None:
         return
 
     for index, finding in enumerate(result.findings):
-        meta = SEVERITY_META.get(finding.severity, SEVERITY_META["low"])
+        meta = SEVERITY_META.get(
+            finding.severity,
+            SEVERITY_META["low"],
+        )
+
         st.markdown(
             f"""
 <div class="pp-finding pp-fade" style="--accent:{meta['dot']};animation-delay:{index * 0.07:.2f}s">
@@ -177,11 +299,16 @@ def _render_findings(result: AnalysisResult, t: Translator) -> None:
             unsafe_allow_html=True,
         )
 
-    with st.expander(t("findings.table_view")):
+    with st.expander(
+        t("findings.table_view")
+    ):
         findings_df = pd.DataFrame(
             [
                 {
-                    t("findings.columns.severity"): severity_badge(finding.severity, t),
+                    t("findings.columns.severity"): severity_badge(
+                        finding.severity,
+                        t,
+                    ),
                     t("findings.columns.title"): finding.title,
                     t("findings.columns.description"): finding.description,
                     t("findings.columns.recommendation"): finding.recommendation,
@@ -191,26 +318,45 @@ def _render_findings(result: AnalysisResult, t: Translator) -> None:
                 for finding in result.findings
             ]
         )
-        st.dataframe(findings_df, use_container_width=True, hide_index=True)
+
+        st.dataframe(
+            findings_df,
+            use_container_width=True,
+            hide_index=True,
+        )
 
 
-def _render_drug_info(result: AnalysisResult, t: Translator) -> None:
+def _render_drug_info(
+    result: AnalysisResult,
+    t: Translator,
+) -> None:
     drug_info = result.new_drug_info
+
     if drug_info is None:
-        st.write(t("drug_info.unavailable"))
+        st.write(
+            t("drug_info.unavailable")
+        )
         return
 
     rows = [
-        f'<div class="pp-kv"><span class="k">{esc(t("drug_info.query"))}</span><span class="v">{esc(drug_info.query_name)}</span></div>',
-        f'<div class="pp-kv"><span class="k">{esc(t("drug_info.source"))}</span><span class="v">{esc(drug_info.source)}</span></div>',
+        (
+            f'<div class="pp-kv"><span class="k">{esc(t("drug_info.query"))}</span>'
+            f'<span class="v">{esc(drug_info.query_name)}</span></div>'
+        ),
+        (
+            f'<div class="pp-kv"><span class="k">{esc(t("drug_info.source"))}</span>'
+            f'<span class="v">{esc(drug_info.source)}</span></div>'
+        ),
     ]
 
     if drug_info.normalized_name:
         rows.append(
             f'<div class="pp-kv"><span class="k">{esc(t("drug_info.rxnorm_match"))}</span>'
             f'<span class="v">{esc(drug_info.normalized_name)} '
-            f'<span class="pp-mono" style="color:var(--pp-muted);font-size:.8rem">(RXCUI {esc(drug_info.rxcui)})</span></span></div>'
+            f'<span class="pp-mono" style="color:var(--pp-muted);font-size:.8rem">'
+            f"(RXCUI {esc(drug_info.rxcui)})</span></span></div>"
         )
+
         if drug_info.ingredients:
             rows.append(
                 f'<div class="pp-kv"><span class="k">{esc(t("drug_info.ingredients"))}</span>'
@@ -218,9 +364,12 @@ def _render_drug_info(result: AnalysisResult, t: Translator) -> None:
             )
 
     st.markdown(
-        f'<div class="pp-card pp-fade"><div class="pp-eyebrow">{esc(t("drug_info.card_title"))}</div>'
-        + "".join(rows)
-        + "</div>",
+        (
+            f'<div class="pp-card pp-fade"><div class="pp-eyebrow">'
+            f'{esc(t("drug_info.card_title"))}</div>'
+            + "".join(rows)
+            + "</div>"
+        ),
         unsafe_allow_html=True,
     )
 
@@ -237,14 +386,31 @@ def _render_drug_info(result: AnalysisResult, t: Translator) -> None:
 """,
                 unsafe_allow_html=True,
             )
+
         if drug_info.warnings:
-            with st.expander(t("drug_info.warnings")):
-                st.write(drug_info.warnings)
+            with st.expander(
+                t("drug_info.warnings")
+            ):
+                st.write(
+                    drug_info.warnings
+                )
+
         if drug_info.drug_interactions:
-            with st.expander(t("drug_info.interactions")):
-                st.write(drug_info.drug_interactions)
+            with st.expander(
+                t("drug_info.interactions")
+            ):
+                st.write(
+                    drug_info.drug_interactions
+                )
+
         if drug_info.indications:
-            with st.expander(t("drug_info.indications")):
-                st.write(drug_info.indications)
+            with st.expander(
+                t("drug_info.indications")
+            ):
+                st.write(
+                    drug_info.indications
+                )
     else:
-        st.caption(t("drug_info.openfda_missing"))
+        st.caption(
+            t("drug_info.openfda_missing")
+        )

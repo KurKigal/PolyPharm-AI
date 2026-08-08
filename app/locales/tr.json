@@ -43,7 +43,7 @@
     "openfda": "openFDA etiket verisi",
     "openfda_help": "Yeni ilacın FDA prospektüs bilgilerini (uyarılar, etkileşim metni) çeker.",
     "gemini": "Gemini yapay zeka özeti",
-    "gemini_help": "Bulguları Gemini ile Türkçe klinik özete dönüştürür. GEMINI_API_KEY gerektirir.",
+    "gemini_help": "Bulguları Gemini ile seçili dilde klinik özete dönüştürür. GEMINI_API_KEY gerektirir.",
     "rxnorm_active": "RxNorm veritabanı aktif (lokal)",
     "rxnorm_missing": "RxNorm veritabanı bulunamadı. `scripts/build_rxnorm_db.py` ile üretebilirsiniz; uygulama onsuz da çalışır."
   },
@@ -104,6 +104,22 @@
       "recommendation": "Öneri",
       "agent": "Ajan",
       "source": "Kaynak"
+    }
+  },
+  "score_breakdown": {
+    "title": "🔎 Bu skor neden böyle?",
+    "starting_score": "Başlangıç skoru",
+    "total_penalty": "Toplam kesinti",
+    "raw_score": "Ham skor",
+    "final_score": "Nihai skor",
+    "no_penalties": "Skor kesintisi uygulanmadı.",
+    "disclaimer": "Bu döküm deterministik yazılım kurallarını açıklar. Skor klinik olarak doğrulanmış bir risk ölçeği değildir.",
+    "columns": {
+      "finding": "Bulgu",
+      "severity": "Şiddet",
+      "penalty": "Kesinti",
+      "source": "Kaynak",
+      "agent": "Ajan"
     }
   },
   "drug_info": {

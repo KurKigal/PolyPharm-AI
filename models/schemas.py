@@ -23,10 +23,30 @@ _GENDER_ALIASES = {
 class LabValues(BaseModel):
     """Patient laboratory values used by the rule-based analysis agents."""
 
-    egfr: float = Field(..., ge=0, le=150, description="Estimated Glomerular Filtration Rate")
-    creatinine: float = Field(..., ge=0, le=20, description="Serum creatinine")
-    ast: float = Field(..., ge=0, le=1000, description="Aspartate aminotransferase")
-    alt: float = Field(..., ge=0, le=1000, description="Alanine aminotransferase")
+    egfr: float = Field(
+        ...,
+        ge=0,
+        le=150,
+        description="Estimated Glomerular Filtration Rate",
+    )
+    creatinine: float = Field(
+        ...,
+        ge=0,
+        le=20,
+        description="Serum creatinine",
+    )
+    ast: float = Field(
+        ...,
+        ge=0,
+        le=1000,
+        description="Aspartate aminotransferase",
+    )
+    alt: float = Field(
+        ...,
+        ge=0,
+        le=1000,
+        description="Alanine aminotransferase",
+    )
 
 
 class Patient(BaseModel):
@@ -46,12 +66,15 @@ class Patient(BaseModel):
     def clean_medication_names(cls, values: list[str]) -> list[str]:
         cleaned: list[str] = []
         seen: set[str] = set()
+
         for value in values:
             normalized = value.strip()
             key = normalized.lower()
+
             if normalized and key not in seen:
                 cleaned.append(normalized)
                 seen.add(key)
+
         return cleaned
 
 
@@ -90,9 +113,31 @@ class RiskFinding(BaseModel):
     agent: str = "unknown"
 
 
+class ScoreContribution(BaseModel):
+    """A deterministic score deduction linked to one risk finding."""
+
+    finding_index: int = Field(..., ge=0)
+    severity: Severity
+    penalty: int = Field(..., ge=0)
+    title: str
+    source: str
+    agent: str
+
+
+class ScoreBreakdown(BaseModel):
+    """Explainable attribution for the deterministic prescription safety score."""
+
+    starting_score: int = Field(default=100, ge=0, le=100)
+    total_penalty: int = Field(..., ge=0)
+    raw_score: int
+    final_score: int = Field(..., ge=0, le=100)
+    contributions: list[ScoreContribution] = Field(default_factory=list)
+
+
 class AnalysisResult(BaseModel):
     safety_score: int = Field(..., ge=0, le=100)
     risk_level: RiskLevel
+    score_breakdown: ScoreBreakdown
     findings: list[RiskFinding]
     recommendation_summary: str
     markdown_report: str
